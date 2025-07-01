@@ -1,73 +1,122 @@
-# Welcome to your Lovable project
+# 프로젝트 매니징 서비스 유저 시나리오
 
-## Project info
+## 사용자 페르소나 요약
 
-**URL**: https://lovable.dev/projects/5f627d63-c4c7-406d-8f56-f188b565fc73
+### **초보 개발자 - 임현우 (20세)**
 
-## How can I edit this code?
+- **상황**: 프로젝트를 처음 시작한 개발자
+- **목표**: 협업 환경에 잘 적응하며 개발하기
+- **니즈**: 낯선 협업 환경에 잘 적응해 이를 활용하고 싶음
+- **페인 포인트**: 너무 복잡한 협업툴, 단일화되지 않은 협업환경
 
-There are several ways of editing your application.
+### **팀 리더 PM - 유채영 (22세)**
 
-**Use Lovable**
+- **상황**: 여러 팀원과의 협업을 관리하게 된 PM
+- **목표**: 팀원에게 적절한 이슈를 발행하고, 잘 수행하도록 유도하기
+- **니즈**: 개별 설정 가능한 팀 단위 리마인더와 이슈 분배에 대한 평가 도구
+- **페인 포인트**: 개별의 리마인딩을 해줘야하는 번거로움
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/5f627d63-c4c7-406d-8f56-f188b565fc73) and start prompting.
+### **취업 준비생 - 김만수 (24세)**
 
-Changes made via Lovable will be committed automatically to this repo.
+- **상황**: 취업 준비를 위한 프로젝트하는 취준생
+- **목표**: 프로젝트를 포트폴리오로 만들어 취업에 활용하기
+- **니즈**: 과정 및 성과 기록이 프로젝트 단계에서 체계화되었으면함
+- **페인 포인트**: 기록의 번거로움, 통합되지 않은 환경
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 사용자 시나리오 및 스토리
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### **시나리오 1: 초보 개발자의 첫 협업 프로젝트 참여**
 
-Follow these steps:
+**상황**: 임현우가 첫 팀 프로젝트에 참여하게 되었지만, 기존 협업 도구들이 복잡해서 어떻게 시작해야 할지 막막함
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+**사용자 시나리오**:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+1. 프로젝트 매니징 서비스 초대 링크를 통해 접속
+2. 간단한 온보딩 튜토리얼로 핵심 기능 학습 (5분 이내)
+3. 자신에게 할당된 태스크를 직관적인 대시보드에서 확인
+4. 한 곳에서 파일 공유, 소통, 진행상황 업데이트 모두 처리
+5. 막힌 부분이 있을 때 팀원에게 쉽게 도움 요청
 
-# Step 3: Install the necessary dependencies.
-npm i
+**사용자 스토리**:
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+> "프로젝트 초보자로서, 저는 복잡한 설정 없이 바로 협업에 참여하고 싶습니다. 그래서 팀에 빠르게 적응하고 기여할 수 있습니다."
 
-**Edit a file directly in GitHub**
+**인수 조건**:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- Given: 새로운 사용자가 프로젝트에 초대되었을 때
+- When: 첫 로그인 시 온보딩을 시작했을 때
+- Then: 5분 이내에 핵심 기능을 익히고 첫 태스크를 시작할 수 있다
 
-**Use GitHub Codespaces**
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### **시나리오 2: PM의 효율적인 팀 관리**
 
-## What technologies are used for this project?
+**상황**: 유채영이 5명의 팀원과 진행하는 프로젝트에서 각자의 진행상황을 체크하고 적절한 리마인더를 보내야 하는 상황
 
-This project is built with:
+**사용자 시나리오**:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+1. 팀 대시보드에서 모든 팀원의 진행상황을 한눈에 확인
+2. 지연되는 태스크에 대해 자동 리마인더 설정
+3. 개별 팀원별 맞춤형 리마인더 메시지 사전 설정
+4. 태스크 분배 시 팀원별 워크로드와 스킬셋 고려한 추천 받기
+5. 주간 팀 성과 리포트 자동 생성 및 공유
 
-## How can I deploy this project?
+**사용자 스토리**:
 
-Simply open [Lovable](https://lovable.dev/projects/5f627d63-c4c7-406d-8f56-f188b565fc73) and click on Share -> Publish.
+> "팀 리더로서, 저는 각 팀원에게 개별적으로 연락하지 않고도 프로젝트가 원활히 진행되도록 관리하고 싶습니다. 그래서 더 전략적인 업무에 집중할 수 있습니다."
 
-## Can I connect a custom domain to my Lovable project?
+**인수 조건**:
 
-Yes, you can!
+- Given: PM이 팀 관리 대시보드에 접속했을 때
+- When: 지연된 태스크가 발생했을 때
+- Then: 자동으로 적절한 리마인더가 관련 팀원에게 발송된다
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+---
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### **시나리오 3: 취준생의 포트폴리오 기록 관리**
+
+**상황**: 김만수가 3개월간 진행할 프로젝트를 시작하면서, 나중에 면접에서 설명할 수 있도록 전 과정을 체계적으로 기록하고 싶음
+
+**사용자 시나리오**:
+
+1. 프로젝트 생성 시 '포트폴리오 모드' 활성화
+2. 주요 마일스톤과 기술적 결정사항 자동 타임라인 생성
+3. 개발 과정에서 겪은 문제와 해결 방법을 간편하게 기록
+4. 프로젝트 완료 후 포트폴리오용 요약 리포트 자동 생성
+5. 면접 대비용 프로젝트 스토리 템플릿 제공
+
+**사용자 스토리**:
+
+> "취업 준비생으로서, 저는 프로젝트를 진행하면서 별도의 기록 작업 없이도 포트폴리오 자료가 자동으로 정리되기를 원합니다. 그래서 면접에서 구체적이고 체계적인 경험을 어필할 수 있습니다."
+
+**인수 조건**:
+
+- Given: 사용자가 포트폴리오 모드로 프로젝트를 시작했을 때
+- When: 프로젝트의 각 단계가 완료될 때
+- Then: 해당 단계의 성과와 학습 내용이 자동으로 포트폴리오에 기록된다
+
+---
+
+## 핵심 가치 제안
+
+### 1. **접근성 우선 설계**
+
+- 복잡한 설정 없이 5분 내 시작 가능한 직관적 인터페이스
+- 초보자도 쉽게 이해할 수 있는 단순명료한 기능 구조
+
+### 2. **지능형 자동화**
+
+- 수동 리마인더 대신 상황별 맞춤 자동 알림 시스템
+- 개인별 워크스타일에 맞춘 스마트 태스크 추천
+
+### 3. **통합 기록 관리**
+
+- 프로젝트 진행부터 포트폴리오 완성까지 원스톱 솔루션
+- 산발적인 기록을 체계적인 스토리로 자동 정리
+
+### 4. **협업 장벽 해소**
+
+- 팀원 간 소통 부담을 줄이는 효율적인 정보 공유 체계
+- 개별 리마인딩 없이도 프로젝트가 자동으로 굴러가는 환경
