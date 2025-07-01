@@ -21,10 +21,10 @@ export const IssueList = ({ issues }: IssueListProps) => {
   return (
     <div className="space-y-3">
       {issues.map((issue) => (
-        <Card key={issue.id} className="p-4 hover:bg-muted/50 transition-colors">
+        <Card key={issue.id} className="p-4 hover:bg-accent/50 transition-colors bg-card border-border">
           <div className="flex items-start gap-3">
             <div className={`w-4 h-4 rounded-full mt-1 flex-shrink-0 ${
-              issue.state === 'open' ? 'bg-green-500' : 'bg-red-500'
+              issue.state === 'open' ? 'bg-primary' : 'bg-destructive'
             }`}></div>
             
             <div className="flex-1 min-w-0">
@@ -32,7 +32,7 @@ export const IssueList = ({ issues }: IssueListProps) => {
                 <div className="flex-1">
                   <Link 
                     to={`/issues/${issue.number}`}
-                    className="text-lg font-semibold hover:text-blue-600 transition-colors"
+                    className="text-lg font-semibold hover:text-primary transition-colors text-card-foreground"
                   >
                     {issue.title}
                   </Link>
@@ -53,7 +53,7 @@ export const IssueList = ({ issues }: IssueListProps) => {
                       key={assignee.username}
                       src={assignee.avatar}
                       alt={assignee.username}
-                      className="w-6 h-6 rounded-full"
+                      className="w-6 h-6 rounded-full border border-border"
                     />
                   ))}
                 </div>
@@ -66,7 +66,7 @@ export const IssueList = ({ issues }: IssueListProps) => {
                       key={label.name}
                       variant="secondary"
                       style={{ backgroundColor: label.color + '20', color: label.color }}
-                      className="text-xs"
+                      className="text-xs border-border"
                     >
                       {label.name}
                     </Badge>
