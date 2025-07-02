@@ -7,7 +7,8 @@ import {
   Calendar,
   Users,
   Plus,
-  Bell
+  Bell,
+  FileEdit
 } from 'lucide-react';
 
 interface NavigationProps {
@@ -29,6 +30,12 @@ export const Navigation = ({ className }: NavigationProps) => {
       href: '/issues',
       icon: FileText,
       description: 'Track and manage issues'
+    },
+    {
+      name: 'Documents',
+      href: '/docs',
+      icon: FileEdit,
+      description: 'Create and manage documents'
     },
     {
       name: 'Meetings',
@@ -76,10 +83,10 @@ export const Navigation = ({ className }: NavigationProps) => {
       
       <div className="mx-2 h-4 w-px bg-border" />
       
-      <Link to="/issues/new">
-        <Button size="sm" className="h-8 bg-green-600 hover:bg-green-700">
-          <Plus className="w-4 h-4 mr-1" />
-          New Issue
+      <Link to="/docs/new">
+        <Button size="sm" className="h-8 bg-blue-600 hover:bg-blue-700">
+          <FileEdit className="w-4 h-4 mr-1" />
+          New Docs
         </Button>
       </Link>
     </nav>

@@ -9,6 +9,7 @@ export interface TeamMember {
   currentWorkload: number;
   status: 'active' | 'busy' | 'away' | 'offline';
   timezone: string;
+  skills?: string[];
   preferences: {
     reminderFrequency: 'immediate' | 'daily' | 'weekly';
     emailNotifications: boolean;

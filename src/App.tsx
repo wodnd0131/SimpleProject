@@ -8,6 +8,8 @@ import Dashboard from "./pages/Dashboard";
 import Issues from "./pages/Issues";
 import IssueDetail from "./pages/IssueDetail";
 import NewIssue from "./pages/NewIssue";
+import Documents from "./pages/Documents";
+import NewDocument from "./pages/NewDocument";
 import Meetings from "./pages/Meetings";
 import TeamDashboard from "./pages/TeamDashboard";
 import NotFound from "./pages/NotFound";
@@ -26,6 +28,8 @@ const App = () => (
           <Route path="/issues" element={<Issues />} />
           <Route path="/issues/new" element={<NewIssue />} />
           <Route path="/issues/:number" element={<IssueDetail />} />
+          <Route path="/docs" element={<Documents />} />
+          <Route path="/docs/new" element={<NewDocument />} />
           <Route path="/meetings" element={<Meetings />} />
           <Route path="/team" element={<TeamDashboard />} />
           <Route path="*" element={<NotFound />} />

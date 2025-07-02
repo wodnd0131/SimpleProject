@@ -12,6 +12,7 @@ export const mockTeamMembers: TeamMember[] = [
     currentWorkload: 35,
     status: "active",
     timezone: "America/New_York",
+    skills: ["React", "TypeScript", "Node.js", "GraphQL"],
     preferences: {
       reminderFrequency: "daily",
       emailNotifications: true,
@@ -30,6 +31,7 @@ export const mockTeamMembers: TeamMember[] = [
     currentWorkload: 28,
     status: "active",
     timezone: "America/Los_Angeles",
+    skills: ["UI/UX Design", "Figma", "Adobe Creative Suite", "Prototyping"],
     preferences: {
       reminderFrequency: "daily",
       emailNotifications: true,
@@ -48,6 +50,7 @@ export const mockTeamMembers: TeamMember[] = [
     currentWorkload: 42,
     status: "busy",
     timezone: "Europe/London",
+    skills: ["DevOps", "AWS", "Kubernetes", "Docker", "CI/CD"],
     preferences: {
       reminderFrequency: "weekly",
       emailNotifications: false,
@@ -66,6 +69,7 @@ export const mockTeamMembers: TeamMember[] = [
     currentWorkload: 20,
     status: "active",
     timezone: "Asia/Tokyo",
+    skills: ["QA Testing", "Selenium", "Jest", "API Testing", "Performance Testing"],
     preferences: {
       reminderFrequency: "immediate",
       emailNotifications: true,
@@ -84,6 +88,7 @@ export const mockTeamMembers: TeamMember[] = [
     currentWorkload: 25,
     status: "active",
     timezone: "America/Chicago",
+    skills: ["Agile", "Scrum", "JIRA", "Risk Management", "Stakeholder Management"],
     preferences: {
       reminderFrequency: "daily",
       emailNotifications: true,
@@ -102,6 +107,7 @@ export const mockTeamMembers: TeamMember[] = [
     currentWorkload: 15,
     status: "away",
     timezone: "Australia/Sydney",
+    skills: ["System Administration", "User Management", "Compliance", "Documentation"],
     preferences: {
       reminderFrequency: "weekly",
       emailNotifications: true,
