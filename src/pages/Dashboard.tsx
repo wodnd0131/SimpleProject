@@ -22,7 +22,12 @@ import {
   AlertTriangle,
   FileText,
   MessageSquare,
-  Target
+  Target,
+  FileEdit,
+  Sparkles,
+  UserPlus,
+  BarChart3,
+  Trophy
 } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import React from 'react';
@@ -91,6 +96,11 @@ const Dashboard = () => {
       case 'meeting_created': return Calendar;
       case 'action_item_completed': return Target;
       case 'user_assigned': return Users;
+      case 'document_created': return FileEdit;
+      case 'ai_analysis_completed': return Sparkles;
+      case 'team_member_added': return UserPlus;
+      case 'workload_updated': return BarChart3;
+      case 'project_milestone': return Trophy;
       default: return FileText;
     }
   };
@@ -108,10 +118,10 @@ const Dashboard = () => {
                 New Meeting
               </Button>
             </Link>
-            <Link to="/issues/new">
-              <Button className="bg-green-600 hover:bg-green-700" size="sm">
-                <Plus className="w-4 h-4 mr-2" />
-                New Issue
+            <Link to="/docs/new">
+              <Button className="bg-blue-600 hover:bg-blue-700" size="sm">
+                <FileEdit className="w-4 h-4 mr-2" />
+                New Docs
               </Button>
             </Link>
           </div>
@@ -223,7 +233,8 @@ const Dashboard = () => {
                     <div key={deadline.id} className="flex items-start space-x-3">
                       <div className="flex-shrink-0">
                         <UserAvatar 
-                          user={deadline.assignee} 
+                          src={deadline.assignee.avatar}
+                          alt={deadline.assignee.username}
                           size="sm"
                         />
                       </div>
@@ -291,7 +302,11 @@ const Dashboard = () => {
                         <div className="flex-1 min-w-0">
                           <p className="text-sm">{activity.description}</p>
                           <div className="flex items-center space-x-2 mt-1">
-                            <UserAvatar user={activity.actor} size="xs" />
+                            <UserAvatar 
+                              src={activity.actor.avatar}
+                              alt={activity.actor.username}
+                              size="xs"
+                            />
                             <span className="text-xs text-muted-foreground">
                               {formatDistanceToNow(new Date(activity.createdAt), { addSuffix: true })}
                             </span>
@@ -313,6 +328,12 @@ const Dashboard = () => {
             </CardHeader>
             <CardContent>
               <div className="grid gap-3">
+                <Link to="/docs/new">
+                  <Button variant="outline" className="w-full justify-start">
+                    <FileEdit className="w-4 h-4 mr-2" />
+                    Create New Document
+                  </Button>
+                </Link>
                 <Link to="/issues/new">
                   <Button variant="outline" className="w-full justify-start">
                     <Plus className="w-4 h-4 mr-2" />

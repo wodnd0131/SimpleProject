@@ -174,6 +174,259 @@ export const mockWorkloadSummary: WorkloadSummary[] = [
   }
 ]
 
+// Performance metrics for each team member
+export const mockPerformanceMetrics = [
+  {
+    memberId: "sarah_dev",
+    quarter: "Q1 2024",
+    tasksCompleted: 28,
+    tasksTarget: 25,
+    codeReviewQuality: 9.2,
+    bugFixRate: 85,
+    mentorshipHours: 12,
+    innovationProjects: 2,
+    clientFeedbackScore: 4.8,
+    technicalSkillsGrowth: [
+      { skill: "React", level: 9.5, improvement: 0.3 },
+      { skill: "TypeScript", level: 9.2, improvement: 0.5 },
+      { skill: "GraphQL", level: 8.5, improvement: 1.2 },
+      { skill: "System Architecture", level: 8.8, improvement: 0.8 }
+    ]
+  },
+  {
+    memberId: "mike_designer",
+    quarter: "Q1 2024",
+    tasksCompleted: 22,
+    tasksTarget: 20,
+    designSystemAdoption: 100,
+    userTestingSessions: 8,
+    clientFeedbackScore: 4.7,
+    crossTeamCollaboration: 9.1,
+    innovationProjects: 1,
+    technicalSkillsGrowth: [
+      { skill: "UI/UX Design", level: 9.8, improvement: 0.2 },
+      { skill: "Figma", level: 9.5, improvement: 0.4 },
+      { skill: "User Research", level: 8.9, improvement: 0.6 },
+      { skill: "Prototyping", level: 9.0, improvement: 0.3 }
+    ]
+  },
+  {
+    memberId: "alex_devops",
+    quarter: "Q1 2024",
+    tasksCompleted: 18,
+    tasksTarget: 16,
+    infrastructureUptime: 99.97,
+    deploymentSuccessRate: 100,
+    performanceOptimizations: 8,
+    securityImprovements: 12,
+    clientFeedbackScore: 4.6,
+    technicalSkillsGrowth: [
+      { skill: "DevOps", level: 9.3, improvement: 0.4 },
+      { skill: "AWS", level: 9.0, improvement: 0.7 },
+      { skill: "Kubernetes", level: 8.7, improvement: 0.9 },
+      { skill: "Security", level: 8.4, improvement: 1.1 }
+    ]
+  },
+  {
+    memberId: "john_doe",
+    quarter: "Q1 2024",
+    tasksCompleted: 19,
+    tasksTarget: 18,
+    testCoverage: 92,
+    bugDetectionRate: 89,
+    processImprovements: 3,
+    documentationQuality: 9.4,
+    clientFeedbackScore: 4.5,
+    technicalSkillsGrowth: [
+      { skill: "QA Testing", level: 9.1, improvement: 0.3 },
+      { skill: "Selenium", level: 8.8, improvement: 0.5 },
+      { skill: "API Testing", level: 8.6, improvement: 0.8 },
+      { skill: "Test Automation", level: 8.9, improvement: 0.7 }
+    ]
+  },
+  {
+    memberId: "project_manager",
+    quarter: "Q1 2024",
+    tasksCompleted: 24,
+    tasksTarget: 22,
+    teamVelocity: 45,
+    clientSatisfaction: 4.6,
+    stakeholderEngagement: 9.3,
+    riskManagement: 8.8,
+    budgetAccuracy: 98,
+    technicalSkillsGrowth: [
+      { skill: "Agile", level: 9.5, improvement: 0.2 },
+      { skill: "Stakeholder Management", level: 9.2, improvement: 0.4 },
+      { skill: "Risk Management", level: 8.8, improvement: 0.6 },
+      { skill: "Technical Leadership", level: 8.5, improvement: 0.8 }
+    ]
+  },
+  {
+    memberId: "emma_admin",
+    quarter: "Q1 2024",
+    tasksCompleted: 16,
+    tasksTarget: 15,
+    systemAdministration: 9.6,
+    userManagement: 9.8,
+    complianceScore: 100,
+    processOptimizations: 5,
+    clientFeedbackScore: 4.4,
+    technicalSkillsGrowth: [
+      { skill: "System Administration", level: 9.6, improvement: 0.3 },
+      { skill: "Compliance", level: 9.8, improvement: 0.2 },
+      { skill: "Process Optimization", level: 8.7, improvement: 0.5 },
+      { skill: "Documentation", level: 9.1, improvement: 0.4 }
+    ]
+  }
+]
+
+// Team collaboration metrics
+export const mockTeamCollaboration = {
+  overallTeamSynergy: 8.9,
+  crossFunctionalProjects: 12,
+  knowledgeSharingSessions: 8,
+  mentoringRelationships: [
+    { mentor: "sarah_dev", mentee: "john_doe", focus: "Technical Development" },
+    { mentor: "mike_designer", mentee: "alex_devops", focus: "UI/UX Principles" },
+    { mentor: "project_manager", mentee: "emma_admin", focus: "Project Management" }
+  ],
+  teamEvents: [
+    { type: "Team Building", date: "2024-01-10", participants: 6 },
+    { type: "Technical Workshop", date: "2024-01-15", participants: 4 },
+    { type: "Retrospective", date: "2024-01-20", participants: 6 }
+  ]
+}
+
+// Expanded workload details
+export const mockDetailedWorkload = [
+  {
+    memberId: "sarah_dev",
+    currentSprint: {
+      plannedHours: 40,
+      loggedHours: 38,
+      overtime: 2,
+      efficiency: 95
+    },
+    upcomingWeek: {
+      scheduledTasks: 8,
+      estimatedHours: 42,
+      availableHours: 40,
+      overloadRisk: "medium"
+    },
+    monthlyTrend: {
+      averageHours: 39,
+      peakHours: 45,
+      minimumHours: 35,
+      burnoutRisk: "low"
+    }
+  },
+  {
+    memberId: "mike_designer",
+    currentSprint: {
+      plannedHours: 35,
+      loggedHours: 33,
+      overtime: 0,
+      efficiency: 94
+    },
+    upcomingWeek: {
+      scheduledTasks: 6,
+      estimatedHours: 36,
+      availableHours: 35,
+      overloadRisk: "low"
+    },
+    monthlyTrend: {
+      averageHours: 34,
+      peakHours: 38,
+      minimumHours: 30,
+      burnoutRisk: "very_low"
+    }
+  },
+  {
+    memberId: "alex_devops",
+    currentSprint: {
+      plannedHours: 40,
+      loggedHours: 44,
+      overtime: 4,
+      efficiency: 90
+    },
+    upcomingWeek: {
+      scheduledTasks: 10,
+      estimatedHours: 48,
+      availableHours: 40,
+      overloadRisk: "high"
+    },
+    monthlyTrend: {
+      averageHours: 42,
+      peakHours: 50,
+      minimumHours: 38,
+      burnoutRisk: "medium"
+    }
+  },
+  {
+    memberId: "john_doe",
+    currentSprint: {
+      plannedHours: 35,
+      loggedHours: 32,
+      overtime: 0,
+      efficiency: 91
+    },
+    upcomingWeek: {
+      scheduledTasks: 5,
+      estimatedHours: 28,
+      availableHours: 35,
+      overloadRisk: "none"
+    },
+    monthlyTrend: {
+      averageHours: 31,
+      peakHours: 36,
+      minimumHours: 28,
+      burnoutRisk: "very_low"
+    }
+  },
+  {
+    memberId: "project_manager",
+    currentSprint: {
+      plannedHours: 30,
+      loggedHours: 32,
+      overtime: 2,
+      efficiency: 93
+    },
+    upcomingWeek: {
+      scheduledTasks: 12,
+      estimatedHours: 35,
+      availableHours: 30,
+      overloadRisk: "medium"
+    },
+    monthlyTrend: {
+      averageHours: 31,
+      peakHours: 38,
+      minimumHours: 28,
+      burnoutRisk: "low"
+    }
+  },
+  {
+    memberId: "emma_admin",
+    currentSprint: {
+      plannedHours: 30,
+      loggedHours: 25,
+      overtime: 0,
+      efficiency: 83
+    },
+    upcomingWeek: {
+      scheduledTasks: 4,
+      estimatedHours: 22,
+      availableHours: 30,
+      overloadRisk: "none"
+    },
+    monthlyTrend: {
+      averageHours: 26,
+      peakHours: 32,
+      minimumHours: 22,
+      burnoutRisk: "very_low"
+    }
+  }
+]
+
 export const mockReminders: Reminder[] = [
   {
     id: 1,
@@ -261,5 +514,8 @@ export const mockReminders: Reminder[] = [
 export default {
   mockTeamMembers,
   mockWorkloadSummary,
-  mockReminders
+  mockReminders,
+  mockPerformanceMetrics,
+  mockTeamCollaboration,
+  mockDetailedWorkload
 }

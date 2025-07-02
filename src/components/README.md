@@ -1,33 +1,33 @@
-# Component Design System
+# 컴포넌트 디자인 시스템
 
-This directory contains a comprehensive design system built for scalable React applications using TypeScript, Tailwind CSS, and Class Variance Authority (CVA).
+이 디렉토리는 TypeScript, Tailwind CSS, Class Variance Authority (CVA)를 사용하여 확장 가능한 React 애플리케이션을 위해 구축된 포괄적인 디자인 시스템을 포함합니다.
 
-## Architecture
+## 아키텍처
 
 ```
 src/components/
-├── common/           # Reusable business components
-├── layout/           # Layout components
-└── ui/              # Base shadcn/ui components
+├── common/           # 재사용 가능한 비즈니스 컴포넌트
+├── layout/           # 레이아웃 컴포넌트
+└── ui/              # 기본 shadcn/ui 컴포넌트
 ```
 
-## Design Tokens
+## 디자인 토큰
 
-Located in `src/lib/design-tokens.ts`, these provide consistent spacing, colors, typography, and other design values across the application.
+`src/lib/design-tokens.ts`에 위치하며, 애플리케이션 전반에 걸쳐 일관된 간격, 색상, 타이포그래피 및 기타 디자인 값을 제공합니다.
 
-### Usage
+### 사용법
 ```typescript
 import { designTokens } from '@/lib/design-tokens'
 
-// Access tokens
+// 토큰 접근
 const spacing = designTokens.spacing.lg
 const issueOpenColor = designTokens.issue.states.open.color
 ```
 
-## Common Components
+## 공통 컴포넌트
 
 ### StatusBadge
-Displays issue status with consistent styling and indicators.
+일관된 스타일링과 표시기로 이슈 상태를 표시합니다.
 
 ```tsx
 import { StatusBadge } from '@/components/common'
@@ -36,12 +36,12 @@ import { StatusBadge } from '@/components/common'
 <StatusBadge status="closed" size="sm" showIndicator={false} />
 ```
 
-**Variants:**
+**변형들:**
 - `status`: 'open' | 'closed' | 'draft'
 - `size`: 'sm' | 'md' | 'lg'
 
 ### UserAvatar
-Flexible avatar component with fallback support.
+폴백 지원을 갖춘 유연한 아바타 컴포넌트입니다.
 
 ```tsx
 import { UserAvatar } from '@/components/common'
@@ -50,11 +50,11 @@ import { UserAvatar } from '@/components/common'
 <UserAvatar fallback="JD" size="lg" />
 ```
 
-**Variants:**
+**변형들:**
 - `size`: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 ### IssueCard
-Complete issue display component with configurable features.
+구성 가능한 기능을 갖춘 완전한 이슈 표시 컴포넌트입니다.
 
 ```tsx
 import { IssueCard } from '@/components/common'
@@ -68,12 +68,12 @@ import { IssueCard } from '@/components/common'
 />
 ```
 
-**Variants:**
+**변형들:**
 - `variant`: 'default' | 'compact' | 'detailed'
 - `interactive`: true | false
 
 ### LabelBadge
-Displays issue labels with custom colors and interactive features.
+커스텀 색상과 인터랙티브 기능을 갖춘 이슈 라벨을 표시합니다.
 
 ```tsx
 import { LabelBadge } from '@/components/common'
@@ -87,7 +87,7 @@ import { LabelBadge } from '@/components/common'
 ```
 
 ### CommentCard
-Standardized comment display with author info and timestamps.
+작성자 정보와 타임스탬프를 포함한 표준화된 댓글 표시입니다.
 
 ```tsx
 import { CommentCard } from '@/components/common'
@@ -101,7 +101,7 @@ import { CommentCard } from '@/components/common'
 ```
 
 ### SearchInput
-Enhanced search input with icon and consistent styling.
+아이콘과 일관된 스타일링을 갖춘 향상된 검색 입력입니다.
 
 ```tsx
 import { SearchInput } from '@/components/common'
@@ -109,13 +109,13 @@ import { SearchInput } from '@/components/common'
 <SearchInput
   value={searchQuery}
   onChange={setSearchQuery}
-  placeholder="Search issues..."
+  placeholder="이슈 검색..."
   size="md"
 />
 ```
 
 ### IssueTabs
-Tab component specifically designed for issue filtering.
+이슈 필터링을 위해 특별히 설계된 탭 컴포넌트입니다.
 
 ```tsx
 import { IssueTabs } from '@/components/common'
@@ -128,10 +128,10 @@ import { IssueTabs } from '@/components/common'
 />
 ```
 
-## Layout Components
+## 레이아웃 컴포넌트
 
 ### PageLayout
-Main page wrapper with consistent spacing and responsive design.
+일관된 간격과 반응형 디자인을 갖춘 메인 페이지 래퍼입니다.
 
 ```tsx
 import { PageLayout } from '@/components/layout'
@@ -141,27 +141,27 @@ import { PageLayout } from '@/components/layout'
 </PageLayout>
 ```
 
-**Variants:**
+**변형들:**
 - `spacing`: 'comfortable' | 'compact' | 'none'
 - `maxWidth`: 'sm' | 'md' | 'lg' | 'xl' | 'full'
 
 ### PageHeader
-Standardized page header with title, subtitle, and actions.
+제목, 부제목, 액션을 포함한 표준화된 페이지 헤더입니다.
 
 ```tsx
 import { PageHeader } from '@/components/layout'
 
 <PageHeader
-  title="Issues"
-  subtitle="Manage your project issues"
+  title="이슈"
+  subtitle="프로젝트 이슈를 관리하세요"
   titleSize="lg"
-  actions={<Button>New Issue</Button>}
+  actions={<Button>새 이슈</Button>}
 />
 ```
 
 ## Class Variance Authority (CVA)
 
-All components use CVA for type-safe variant management:
+모든 컴포넌트는 타입 안전한 변형 관리를 위해 CVA를 사용합니다:
 
 ```typescript
 const componentVariants = cva(
@@ -186,40 +186,40 @@ const componentVariants = cva(
 )
 ```
 
-## TypeScript Integration
+## TypeScript 통합
 
-All components include proper TypeScript interfaces:
+모든 컴포넌트는 적절한 TypeScript 인터페이스를 포함합니다:
 
 ```typescript
 interface ComponentProps extends VariantProps<typeof componentVariants> {
   className?: string
   children?: ReactNode
-  // Component-specific props
+  // 컴포넌트별 props
 }
 ```
 
-## Best Practices
+## 모범 사례
 
-1. **Use design tokens** for consistent spacing and colors
-2. **Leverage CVA variants** for component flexibility
-3. **Follow naming conventions**: PascalCase for components, camelCase for functions
-4. **Include proper TypeScript types** for all props
-5. **Use compound components** for complex UI patterns
-6. **Maintain accessibility** with proper ARIA attributes
+1. **디자인 토큰 사용** - 일관된 간격과 색상을 위해
+2. **CVA 변형 활용** - 컴포넌트 유연성을 위해
+3. **네이밍 컨벤션 준수** - 컴포넌트는 PascalCase, 함수는 camelCase
+4. **적절한 TypeScript 타입 포함** - 모든 props에 대해
+5. **복합 컴포넌트 사용** - 복잡한 UI 패턴을 위해
+6. **접근성 유지** - 적절한 ARIA 속성과 함께
 
-## Migration Guide
+## 마이그레이션 가이드
 
-When migrating existing components:
+기존 컴포넌트를 마이그레이션할 때:
 
-1. Replace hardcoded Tailwind classes with design tokens
-2. Use new reusable components instead of duplicated code
-3. Apply CVA variants for component variations
-4. Update imports to use the new component structure
-5. Ensure TypeScript compliance
+1. 하드코딩된 Tailwind 클래스를 디자인 토큰으로 교체
+2. 중복된 코드 대신 새로운 재사용 가능한 컴포넌트 사용
+3. 컴포넌트 변형을 위해 CVA 변형 적용
+4. 새로운 컴포넌트 구조를 사용하도록 import 업데이트
+5. TypeScript 준수 확인
 
-## Examples
+## 예시
 
-See the refactored pages in `src/pages/` for real-world usage examples:
-- `Issues.tsx` - List page with search and filtering
-- `IssueDetail.tsx` - Detail page with comments and metadata
-- `NewIssue.tsx` - Form page with complex interactions
+실제 사용 예시를 위해 `src/pages/`의 리팩토링된 페이지들을 참조하세요:
+- `Issues.tsx` - 검색과 필터링이 있는 목록 페이지
+- `IssueDetail.tsx` - 댓글과 메타데이터가 있는 상세 페이지
+- `NewIssue.tsx` - 복잡한 상호작용이 있는 폼 페이지

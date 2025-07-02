@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { dashboardService } from '@/services/api'
+import { apiService } from '@/services/ApiServiceProxy'
 
 export interface DashboardStatsParams {
   from?: string
@@ -9,7 +9,7 @@ export interface DashboardStatsParams {
 export const useDashboardStats = (dateRange?: DashboardStatsParams) => {
   return useQuery({
     queryKey: ['dashboard', 'stats', dateRange],
-    queryFn: () => dashboardService.getDashboardStats(dateRange),
+    queryFn: () => apiService.dashboard.getDashboardStats(dateRange),
   })
 }
 
@@ -23,14 +23,14 @@ export interface RecentActivityParams {
 export const useRecentActivity = (params?: RecentActivityParams) => {
   return useQuery({
     queryKey: ['dashboard', 'activity', params],
-    queryFn: () => dashboardService.getRecentActivity(params),
+    queryFn: () => apiService.dashboard.getRecentActivity(params),
   })
 }
 
 export const useProjectProgress = (projectIds?: number[]) => {
   return useQuery({
     queryKey: ['dashboard', 'projects', 'progress', projectIds],
-    queryFn: () => dashboardService.getProjectProgress(projectIds),
+    queryFn: () => apiService.dashboard.getProjectProgress(projectIds),
   })
 }
 
@@ -44,14 +44,14 @@ export interface UpcomingDeadlinesParams {
 export const useUpcomingDeadlines = (params?: UpcomingDeadlinesParams) => {
   return useQuery({
     queryKey: ['dashboard', 'deadlines', params],
-    queryFn: () => dashboardService.getUpcomingDeadlines(params),
+    queryFn: () => apiService.dashboard.getUpcomingDeadlines(params),
   })
 }
 
 export const usePersonalDashboard = (userId: string) => {
   return useQuery({
     queryKey: ['dashboard', 'personal', userId],
-    queryFn: () => dashboardService.getPersonalDashboard(userId),
+    queryFn: () => apiService.dashboard.getPersonalDashboard(userId),
     enabled: !!userId,
   })
 }
@@ -62,6 +62,6 @@ export const useTeamPerformanceMetrics = (
 ) => {
   return useQuery({
     queryKey: ['dashboard', 'team', 'performance', teamId, period],
-    queryFn: () => dashboardService.getTeamPerformanceMetrics(teamId, period),
+    queryFn: () => apiService.dashboard.getTeamPerformanceMetrics(teamId, period),
   })
 }

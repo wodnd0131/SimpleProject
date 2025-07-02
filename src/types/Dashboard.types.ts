@@ -13,7 +13,7 @@ export interface DashboardStats {
 
 export interface RecentActivity {
   id: number;
-  type: 'issue_created' | 'issue_closed' | 'meeting_created' | 'action_item_completed' | 'user_assigned';
+  type: 'issue_created' | 'issue_closed' | 'meeting_created' | 'action_item_completed' | 'user_assigned' | 'document_created' | 'ai_analysis_completed' | 'team_member_added' | 'workload_updated' | 'project_milestone';
   title: string;
   description: string;
   actor: {
@@ -22,7 +22,7 @@ export interface RecentActivity {
   };
   relatedEntity?: {
     id: number;
-    type: 'issue' | 'meeting' | 'action_item';
+    type: 'issue' | 'meeting' | 'action_item' | 'document' | 'team_member' | 'project';
     title: string;
   };
   createdAt: string;

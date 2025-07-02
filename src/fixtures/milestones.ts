@@ -2,40 +2,94 @@ import type { MilestonesResponse, Milestone, ApiResponse } from '@/types/api'
 
 const mockMilestones: Milestone[] = [
   {
-    id: '1',
-    name: 'v1.0.0',
-    description: 'First major release',
+    id: 'milestone-1',
+    name: 'Auth System MVP',
+    description: 'Basic OAuth 2.0 implementation and security improvements',
     state: 'open',
-    dueDate: '2024-03-01T00:00:00Z',
-    issueCount: 15,
-    closedIssueCount: 8
-  },
-  {
-    id: '2',
-    name: 'v1.1.0',
-    description: 'Minor feature updates',
-    state: 'open',
-    dueDate: '2024-04-15T00:00:00Z',
+    dueDate: '2024-01-25T00:00:00Z',
     issueCount: 8,
-    closedIssueCount: 2
+    closedIssueCount: 6,
+    projectId: '1'
   },
   {
-    id: '3',
-    name: 'v2.0.0',
-    description: 'Major refactor',
+    id: 'milestone-2',
+    name: 'Auth System Complete',
+    description: 'Full authentication system with advanced features',
     state: 'open',
-    dueDate: '2024-06-01T00:00:00Z',
-    issueCount: 25,
-    closedIssueCount: 0
+    dueDate: '2024-01-31T00:00:00Z',
+    issueCount: 10,
+    closedIssueCount: 3,
+    projectId: '1'
   },
   {
-    id: '4',
-    name: 'v0.9.0',
-    description: 'Beta release',
+    id: 'milestone-3',
+    name: 'Dashboard Core Redesign',
+    description: 'Basic UI/UX improvements and responsive design',
+    state: 'open',
+    dueDate: '2024-02-01T00:00:00Z',
+    issueCount: 12,
+    closedIssueCount: 8,
+    projectId: '2'
+  },
+  {
+    id: 'milestone-4',
+    name: 'Dashboard Advanced Features',
+    description: 'Widget system and performance optimizations',
+    state: 'open',
+    dueDate: '2024-02-14T00:00:00Z',
+    issueCount: 13,
+    closedIssueCount: 3,
+    projectId: '2'
+  },
+  {
+    id: 'milestone-5',
+    name: 'API Docs v2.0',
+    description: 'Complete API documentation overhaul',
+    state: 'open',
+    dueDate: '2024-01-25T00:00:00Z',
+    issueCount: 6,
+    closedIssueCount: 2,
+    projectId: '3'
+  },
+  {
+    id: 'milestone-6',
+    name: 'AI Core Implementation',
+    description: 'Basic AI document processing pipeline',
+    state: 'open',
+    dueDate: '2024-02-10T00:00:00Z',
+    issueCount: 8,
+    closedIssueCount: 1,
+    projectId: '4'
+  },
+  {
+    id: 'milestone-7',
+    name: 'AI Advanced Features',
+    description: 'ML models and intelligent analysis features',
+    state: 'open',
+    dueDate: '2024-02-28T00:00:00Z',
+    issueCount: 10,
+    closedIssueCount: 0,
+    projectId: '4'
+  },
+  {
+    id: 'milestone-8',
+    name: 'Mobile Optimization Complete',
+    description: 'Performance improvements and feature enhancements',
     state: 'closed',
     dueDate: '2024-01-15T00:00:00Z',
     issueCount: 12,
-    closedIssueCount: 12
+    closedIssueCount: 12,
+    projectId: '5'
+  },
+  {
+    id: 'milestone-9',
+    name: 'Collaboration Platform Beta',
+    description: 'Core collaboration features and real-time updates',
+    state: 'open',
+    dueDate: '2024-03-01T00:00:00Z',
+    issueCount: 15,
+    closedIssueCount: 1,
+    projectId: '6'
   }
 ]
 
@@ -132,3 +186,7 @@ export class MilestoneFixtures {
 }
 
 export const milestoneFixtures = new MilestoneFixtures()
+
+export default {
+  mockMilestones
+}

@@ -3,12 +3,14 @@ import { userService } from './api/UserService'
 import { labelService } from './api/LabelService'
 import { milestoneService } from './api/MilestoneService'
 import { projectService } from './api/ProjectService'
+import { dashboardService } from './api/DashboardService'
 
 import { issueFixtures } from '@/fixtures/issues'
 import { userFixtures } from '@/fixtures/users'
 import { labelFixtures } from '@/fixtures/labels'
 import { milestoneFixtures } from '@/fixtures/milestones'
 import { projectFixtures } from '@/fixtures/projects'
+import { dashboardFixtures } from '@/fixtures/dashboardService'
 
 const USE_FIXTURES = import.meta.env.VITE_USE_FIXTURES === 'true'
 
@@ -31,6 +33,10 @@ class ApiServiceProxy {
 
   get projects() {
     return USE_FIXTURES ? projectFixtures : projectService
+  }
+
+  get dashboard() {
+    return USE_FIXTURES ? dashboardFixtures : dashboardService
   }
 
   isUsingFixtures(): boolean {

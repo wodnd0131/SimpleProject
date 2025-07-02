@@ -1,48 +1,48 @@
-# API Service Architecture
+# API 서비스 아키텍처
 
-This directory contains a comprehensive API service layer with React Query integration, providing a scalable and robust data fetching solution.
+이 디렉토리는 React Query 통합을 포함한 포괄적인 API 서비스 레이어를 포함하며, 확장 가능하고 견고한 데이터 페칭 솔루션을 제공합니다.
 
-## Architecture Overview
+## 아키텍처 개요
 
 ```
 src/services/
-├── api/                    # Domain-specific API services
-│   ├── BaseService.ts     # Base service class with common functionality
-│   ├── IssueService.ts    # Issues CRUD operations
-│   ├── UserService.ts     # User management
-│   ├── LabelService.ts    # Labels management
-│   ├── MilestoneService.ts # Milestones management
-│   ├── ProjectService.ts  # Projects management
-│   └── index.ts          # Service exports
-├── ApiServiceProxy.ts     # Environment-aware service proxy
-└── ToastService.ts       # Toast notification service
+├── api/                    # 도메인별 API 서비스
+│   ├── BaseService.ts     # 공통 기능을 갖춘 기본 서비스 클래스
+│   ├── IssueService.ts    # 이슈 CRUD 작업
+│   ├── UserService.ts     # 사용자 관리
+│   ├── LabelService.ts    # 라벨 관리
+│   ├── MilestoneService.ts # 마일스톤 관리
+│   ├── ProjectService.ts  # 프로젝트 관리
+│   └── index.ts          # 서비스 내보내기
+├── ApiServiceProxy.ts     # 환경 인식 서비스 프록시
+└── ToastService.ts       # 토스트 알림 서비스
 ```
 
-## Key Features
+## 주요 기능
 
-### 🔄 **Fixture Toggle System**
-Switch between real API and mock data using environment variables:
+### 🔄 **픽스처 토글 시스템**
+환경 변수를 사용하여 실제 API와 모킹 데이터 간 전환:
 ```env
-VITE_USE_FIXTURES=true   # Use mock data
-VITE_USE_FIXTURES=false  # Use real API
+VITE_USE_FIXTURES=true   # 모킹 데이터 사용
+VITE_USE_FIXTURES=false  # 실제 API 사용
 ```
 
-### 🚀 **React Query Integration**
-- Automatic caching and synchronization
-- Optimistic updates
-- Loading and error states
-- Background refetching
-- Query invalidation
+### 🚀 **React Query 통합**
+- 자동 캐싱 및 동기화
+- 낙관적 업데이트
+- 로딩 및 에러 상태
+- 백그라운드 리페칭
+- 쿼리 무효화
 
-### 🎯 **Type-Safe API Layer**
-- Full TypeScript support
-- Consistent response interfaces
-- Runtime error handling
-- Axios interceptors for auth and errors
+### 🎯 **타입 안전한 API 레이어**
+- 완전한 TypeScript 지원
+- 일관된 응답 인터페이스
+- 런타임 에러 처리
+- 인증 및 에러를 위한 Axios 인터셉터
 
-## Usage Examples
+## 사용 예시
 
-### Basic Data Fetching
+### 기본 데이터 페칭
 ```tsx
 import { useIssues, useIssue } from '@/hooks'
 
@@ -61,7 +61,7 @@ function IssueDetail({ id }: { id: number }) {
 }
 ```
 
-### Mutations with Optimistic Updates
+### 낙관적 업데이트가 포함된 뮤테이션
 ```tsx
 import { useCreateIssueMutation } from '@/hooks'
 
@@ -71,24 +71,24 @@ function CreateIssueForm() {
   const handleSubmit = async (data: CreateIssueRequest) => {
     try {
       const response = await createIssue.mutateAsync(data)
-      // Success handling (toast shown automatically)
+      // 성공 처리 (토스트 자동 표시)
       navigate(`/issues/${response.data.number}`)
     } catch (error) {
-      // Error handling (toast shown automatically)
+      // 에러 처리 (토스트 자동 표시)
     }
   }
   
   return (
     <form onSubmit={handleSubmit}>
       <Button disabled={createIssue.isPending}>
-        {createIssue.isPending ? 'Creating...' : 'Create Issue'}
+        {createIssue.isPending ? '생성 중...' : '이슈 생성'}
       </Button>
     </form>
   )
 }
 ```
 
-### Advanced Query Configuration
+### 고급 쿼리 설정
 ```tsx
 import { useIssues } from '@/hooks'
 
@@ -115,43 +115,43 @@ function IssuesWithSearch() {
 }
 ```
 
-## API Services
+## API 서비스
 
 ### IssueService
-Complete CRUD operations for issues:
+이슈에 대한 완전한 CRUD 작업:
 ```typescript
-// Get all issues with filtering
+// 필터링과 함께 모든 이슈 가져오기
 const issues = await issueService.getIssues({
-  q: 'search term',
+  q: '검색어',
   state: 'open',
   labels: ['bug', 'enhancement'],
   assignees: ['user1', 'user2']
 })
 
-// Get single issue
+// 단일 이슈 가져오기
 const issue = await issueService.getIssue(123)
 
-// Create new issue
+// 새 이슈 생성
 const newIssue = await issueService.createIssue({
-  title: 'Bug report',
-  body: 'Description...',
+  title: '버그 리포트',
+  body: '설명...',
   labelIds: ['1', '2'],
   assigneeIds: ['user1']
 })
 
-// Update issue
+// 이슈 업데이트
 const updated = await issueService.updateIssue(123, {
-  title: 'Updated title',
+  title: '업데이트된 제목',
   state: 'closed'
 })
 
-// Comments
+// 댓글
 const comments = await issueService.getComments(123)
-const comment = await issueService.addComment(123, { body: 'Comment text' })
+const comment = await issueService.addComment(123, { body: '댓글 텍스트' })
 ```
 
 ### UserService
-User management operations:
+사용자 관리 작업:
 ```typescript
 const users = await userService.getUsers()
 const user = await userService.getUser('user-id')
@@ -160,40 +160,40 @@ const searchResults = await userService.searchUsers('john')
 ```
 
 ### LabelService
-Label management:
+라벨 관리:
 ```typescript
 const labels = await labelService.getLabels()
 const label = await labelService.createLabel({
   name: 'priority-high',
   color: '#ff0000',
-  description: 'High priority issues'
+  description: '높은 우선순위 이슈'
 })
 ```
 
-## React Query Hooks
+## React Query 훅
 
-### Issues Hooks
+### 이슈 훅
 ```typescript
-// Data fetching
+// 데이터 페칭
 useIssues(params?: SearchIssuesRequest)
 useIssue(id: number)
 useIssueComments(issueId: number)
 
-// Mutations
+// 뮤테이션
 useCreateIssueMutation()
 useUpdateIssueMutation()
 useCloseIssueMutation()
 useReopenIssueMutation()
 useDeleteIssueMutation()
 
-// Comments
+// 댓글
 useAddCommentMutation()
 useUpdateCommentMutation()
 useDeleteCommentMutation()
-useOptimisticAddComment() // With optimistic updates
+useOptimisticAddComment() // 낙관적 업데이트 포함
 ```
 
-### Users Hooks
+### 사용자 훅
 ```typescript
 useUsers()
 useUser(id: string)
@@ -203,7 +203,7 @@ useUpdateUserMutation()
 useUpdateCurrentUserMutation()
 ```
 
-### Labels Hooks
+### 라벨 훅
 ```typescript
 useLabels()
 useLabel(id: string)
@@ -212,41 +212,41 @@ useUpdateLabelMutation()
 useDeleteLabelMutation()
 ```
 
-## Environment Configuration
+## 환경 설정
 
-### Required Environment Variables
+### 필수 환경 변수
 ```env
-# API Configuration
+# API 설정
 VITE_API_BASE_URL=http://localhost:8080/api
 VITE_USE_FIXTURES=true
 
-# Development settings
+# 개발 설정
 NODE_ENV=development
 ```
 
-### Service Proxy
-The `ApiServiceProxy` automatically switches between real API and fixtures:
+### 서비스 프록시
+`ApiServiceProxy`는 실제 API와 픽스처 간을 자동으로 전환합니다:
 ```typescript
 import apiService from '@/services/ApiServiceProxy'
 
-// Always returns the correct service based on environment
+// 환경에 따라 항상 올바른 서비스를 반환
 const issues = await apiService.issues.getIssues()
 const users = await apiService.users.getUsers()
 
-// Check current mode
+// 현재 모드 확인
 console.log(apiService.isUsingFixtures()) // true/false
 console.log(apiService.getEnvironmentInfo())
 ```
 
-## Error Handling
+## 에러 처리
 
-### Automatic Error Handling
-- Axios interceptors handle HTTP errors
-- Toast notifications for user feedback
-- Consistent error interfaces
-- Retry logic for failed requests
+### 자동 에러 처리
+- Axios 인터셉터가 HTTP 에러 처리
+- 사용자 피드백을 위한 토스트 알림
+- 일관된 에러 인터페이스
+- 실패한 요청에 대한 재시도 로직
 
-### Manual Error Handling
+### 수동 에러 처리
 ```typescript
 const { data, error, isError } = useIssues()
 
@@ -255,129 +255,129 @@ if (isError) {
 }
 ```
 
-### Mutation Error Handling
+### 뮤테이션 에러 처리
 ```typescript
 const mutation = useCreateIssueMutation()
 
-// Automatic handling (recommended)
-await mutation.mutateAsync(data) // Throws on error
+// 자동 처리 (권장)
+await mutation.mutateAsync(data) // 에러 시 예외 발생
 
-// Manual handling
+// 수동 처리
 mutation.mutate(data, {
   onError: (error) => {
-    console.error('Custom error handling:', error)
+    console.error('커스텀 에러 처리:', error)
   }
 })
 ```
 
-## Loading States
+## 로딩 상태
 
-### Query Loading States
+### 쿼리 로딩 상태
 ```typescript
 const { data, isLoading, isFetching, isError } = useIssues()
 
-// isLoading: Initial loading (no cached data)
-// isFetching: Any network request (including background updates)
-// isError: Query failed
+// isLoading: 초기 로딩 (캐시된 데이터 없음)
+// isFetching: 모든 네트워크 요청 (백그라운드 업데이트 포함)
+// isError: 쿼리 실패
 ```
 
-### Mutation Loading States
+### 뮤테이션 로딩 상태
 ```typescript
 const mutation = useCreateIssueMutation()
 
-// mutation.isPending: Mutation in progress
-// mutation.isError: Mutation failed
-// mutation.isSuccess: Mutation succeeded
+// mutation.isPending: 뮤테이션 진행 중
+// mutation.isError: 뮤테이션 실패
+// mutation.isSuccess: 뮤테이션 성공
 ```
 
-## Fixtures System
+## 픽스처 시스템
 
-Located in `src/fixtures/`, the fixture system provides:
-- Realistic mock data
-- Simulated network delays
-- Full CRUD operations
-- Stateful data management
-- Error simulation
+`src/fixtures/`에 위치한 픽스처 시스템은 다음을 제공합니다:
+- 현실적인 모킹 데이터
+- 시뮬레이션된 네트워크 지연
+- 완전한 CRUD 작업
+- 상태유지 데이터 관리
+- 에러 시뮬레이션
 
-### Adding New Fixtures
-1. Create fixture class extending base patterns
-2. Implement all service methods
-3. Add to `ApiServiceProxy`
-4. Export from fixtures index
+### 새 픽스처 추가
+1. 기본 패턴을 확장하는 픽스처 클래스 생성
+2. 모든 서비스 메서드 구현
+3. `ApiServiceProxy`에 추가
+4. 픽스처 인덱스에서 내보내기
 
-## Best Practices
+## 모범 사례
 
-### 1. Use Appropriate Hooks
+### 1. 적절한 훅 사용
 ```typescript
-// ✅ Good: Use specific hooks for specific data
+// ✅ 좋음: 특정 데이터에 특정 훅 사용
 const { data: issues } = useIssues()
 const { data: issue } = useIssue(id)
 
-// ❌ Avoid: Generic API calls in components
+// ❌ 피하기: 컴포넌트에서 일반적인 API 호출
 const issues = await fetch('/api/issues')
 ```
 
-### 2. Handle Loading States
+### 2. 로딩 상태 처리
 ```typescript
-// ✅ Good: Proper loading handling
+// ✅ 좋음: 적절한 로딩 처리
 if (isLoading) return <Skeleton />
 if (isError) return <ErrorMessage />
 return <DataComponent data={data} />
 
-// ❌ Avoid: No loading states
-return <DataComponent data={data} /> // May render with undefined data
+// ❌ 피하기: 로딩 상태 없음
+return <DataComponent data={data} /> // undefined 데이터로 렌더링될 수 있음
 ```
 
-### 3. Use Optimistic Updates
+### 3. 낙관적 업데이트 사용
 ```typescript
-// ✅ Good: For instant feedback
+// ✅ 좋음: 즉각적인 피드백을 위해
 const optimisticMutation = useOptimisticAddComment()
 
-// ✅ Good: For reliable operations
+// ✅ 좋음: 신뢰할 수 있는 작업을 위해
 const safeMutation = useAddCommentMutation()
 ```
 
-### 4. Invalidate Related Queries
+### 4. 관련 쿼리 무효화
 ```typescript
-// Mutations automatically invalidate related queries
-const createIssue = useCreateIssueMutation() // Invalidates issue lists
-const updateIssue = useUpdateIssueMutation() // Invalidates specific issue
+// 뮤테이션이 자동으로 관련 쿼리를 무효화
+const createIssue = useCreateIssueMutation() // 이슈 목록 무효화
+const updateIssue = useUpdateIssueMutation() // 특정 이슈 무효화
 ```
 
-## Migration from Mock Data
+## 모킹 데이터에서 마이그레이션
 
-To migrate from direct mock data usage:
+직접적인 모킹 데이터 사용에서 마이그레이션하려면:
 
-1. **Replace direct imports**:
+1. **직접 임포트 교체**:
    ```typescript
-   // ❌ Before
+   // ❌ 이전
    import { mockIssues } from '@/data/mockIssues'
    
-   // ✅ After
+   // ✅ 이후
    import { useIssues } from '@/hooks'
    const { data } = useIssues()
    const issues = data?.data || []
    ```
 
-2. **Add loading states**:
+2. **로딩 상태 추가**:
    ```typescript
-   // ✅ After
+   // ✅ 이후
    const { data, isLoading } = useIssues()
    if (isLoading) return <LoadingSpinner />
    ```
 
-3. **Use mutations for data changes**:
+3. **데이터 변경에 뮤테이션 사용**:
    ```typescript
-   // ❌ Before
+   // ❌ 이전
    const handleCreate = (data) => {
-     // Direct state manipulation
+     // 직접적인 상태 조작
    }
    
-   // ✅ After
+   // ✅ 이후
    const createMutation = useCreateIssueMutation()
    const handleCreate = (data) => {
      createMutation.mutate(data)
    }
    ```
 
-This architecture provides a production-ready foundation that scales from development to production with minimal configuration changes.
+이 아키텍처는 최소한의 설정 변경으로 개발에서 프로덕션까지 확장되는 프로덕션 준비 완료된 기반을 제공합니다.

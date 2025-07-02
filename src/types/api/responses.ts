@@ -33,6 +33,7 @@ export interface CreateIssueRequest {
   labelIds?: string[]
   milestoneId?: string
   projectId?: string
+  priority?: string
 }
 
 export interface UpdateIssueRequest {
@@ -80,6 +81,7 @@ export interface Milestone {
   state: 'open' | 'closed'
   issueCount: number
   closedIssueCount: number
+  projectId?: string
 }
 
 export interface MilestonesResponse extends ApiResponse<Milestone[]> {}
@@ -89,6 +91,16 @@ export interface Project {
   name: string
   description?: string
   color?: string
+  status?: 'planning' | 'in_progress' | 'completed' | 'delayed' | 'on_hold'
+  priority?: 'low' | 'medium' | 'high'
+  startDate?: string
+  dueDate?: string
+  completionPercentage?: number
+  teamMembers?: string[]
+  milestones?: string[]
+  budget?: number
+  spentBudget?: number
+  tags?: string[]
 }
 
 export interface ProjectsResponse extends ApiResponse<Project[]> {}
