@@ -16,7 +16,7 @@
 https://wodnd0131.github.io/SimpleProject
 
 채팅 자동화 관련 프로토타입
-https://wodnd0131.github.io/
+https://wodnd0131.github.io/ToyDocs
 
 # 프로젝트 매니징 서비스 유저 시나리오
 
