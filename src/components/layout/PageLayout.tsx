@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
+import { Navigation } from './Navigation'
 
 const pageLayoutVariants = cva(
   'min-h-screen bg-background',
@@ -60,6 +61,9 @@ export const PageLayout = ({
   return (
     <div className={cn(pageLayoutVariants({ spacing }), className)}>
       <div className={cn(containerVariants({ maxWidth }), containerClassName)}>
+        <div className="border-b mb-6 pb-4">
+          <Navigation />
+        </div>
         {children}
       </div>
     </div>
