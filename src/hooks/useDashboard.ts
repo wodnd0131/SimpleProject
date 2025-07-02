@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { apiService } from '@/services/ApiServiceProxy'
+import apiService from '@/services/ApiServiceProxy'
 
 export interface DashboardStatsParams {
   from?: string

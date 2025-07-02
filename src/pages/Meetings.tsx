@@ -147,7 +147,6 @@ const Meetings = () => {
               value={searchQuery}
               onChange={setSearchQuery}
               placeholder="Search meetings by title or participant..."
-              icon={Search}
             />
           </div>
           <div className="flex items-center space-x-2">
@@ -231,7 +230,9 @@ const Meetings = () => {
                         {meeting.participants.slice(0, 4).map((participant, index) => (
                           <UserAvatar
                             key={index}
-                            user={participant}
+                            src={participant.avatar}
+                            alt={participant.username}
+                            fallback={participant.username.slice(0, 2).toUpperCase()}
                             size="sm"
                             className="border-2 border-background"
                           />

@@ -4,6 +4,8 @@ import { labelService } from './api/LabelService'
 import { milestoneService } from './api/MilestoneService'
 import { projectService } from './api/ProjectService'
 import { dashboardService } from './api/DashboardService'
+import { meetingMinutesService } from './api/MeetingMinutesService'
+import { teamService } from './api/TeamService'
 
 import { issueFixtures } from '@/fixtures/issues'
 import { userFixtures } from '@/fixtures/users'
@@ -11,6 +13,8 @@ import { labelFixtures } from '@/fixtures/labels'
 import { milestoneFixtures } from '@/fixtures/milestones'
 import { projectFixtures } from '@/fixtures/projects'
 import { dashboardFixtures } from '@/fixtures/dashboardService'
+import { meetingMinutesFixtures } from '@/fixtures/meetingMinutesService'
+import { teamServiceFixtures } from '@/fixtures/teamService'
 
 const USE_FIXTURES = import.meta.env.VITE_USE_FIXTURES === 'true'
 
@@ -37,6 +41,14 @@ class ApiServiceProxy {
 
   get dashboard() {
     return USE_FIXTURES ? dashboardFixtures : dashboardService
+  }
+
+  get meetingMinutes() {
+    return USE_FIXTURES ? meetingMinutesFixtures : meetingMinutesService
+  }
+
+  get team() {
+    return USE_FIXTURES ? teamServiceFixtures : teamService
   }
 
   isUsingFixtures(): boolean {

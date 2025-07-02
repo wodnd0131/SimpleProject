@@ -22,25 +22,23 @@ export interface WorkloadSummary {
   memberId: string;
   totalAssigned: number;
   overdue: number;
-  dueSoon: number;
+  dueSoon?: number;
   inProgress: number;
   completed: number;
   completionRate: number;
+  weeklyHours: number;
+  efficiency: number;
 }
 
 export interface Reminder {
   id: number;
-  type: 'issue_due' | 'meeting_upcoming' | 'action_item' | 'overdue';
+  type: 'code_review' | 'meeting' | 'planning' | 'documentation' | 'review' | 'bug' | 'social';
   title: string;
   description: string;
-  relatedEntityId: number;
-  relatedEntityType: 'issue' | 'meeting' | 'action_item';
-  assigneeId: string;
-  dueDate: string;
   priority: 'low' | 'medium' | 'high';
-  status: 'pending' | 'sent' | 'acknowledged' | 'dismissed';
   createdAt: string;
-  sentAt?: string;
+  dueDate: string;
+  assignedTo: TeamMember;
 }
 
 export interface CreateReminderRequest {
@@ -52,4 +50,15 @@ export interface CreateReminderRequest {
   assigneeId: string;
   dueDate: string;
   priority: 'low' | 'medium' | 'high';
+}
+
+export interface UpcomingDeadline {
+  id: number;
+  title: string;
+  type: 'development' | 'design' | 'infrastructure' | 'security' | 'meeting' | 'testing' | 'planning';
+  status: 'pending' | 'in_progress' | 'overdue';
+  assignee: TeamMember;
+  dueDate: string;
+  daysRemaining: number;
+  createdAt: string;
 }

@@ -1,8 +1,9 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { meetingMinutesService } from '@/services/api'
+import apiService from '@/services/ApiServiceProxy'
 import type { 
   CreateMeetingMinutesRequest, 
-  UpdateMeetingMinutesRequest 
+  UpdateMeetingMinutesRequest,
+  ActionItem
 } from '@/types/MeetingMinutes.types'
 
 export interface MeetingMinutesParams {
@@ -14,14 +15,14 @@ export interface MeetingMinutesParams {
 export const useMeetingMinutes = (params?: MeetingMinutesParams) => {
   return useQuery({
     queryKey: ['meeting-minutes', params],
-    queryFn: () => meetingMinutesService.getMeetingMinutes(params),
+    queryFn: () => apiService.meetingMinutes.getMeetingMinutes(params),
   })
 }
 
 export const useMeetingMinute = (id: number) => {
   return useQuery({
     queryKey: ['meeting-minutes', id],
-    queryFn: () => meetingMinutesService.getMeetingMinute(id),
+    queryFn: () => apiService.meetingMinutes.getMeetingMinute(id),
     enabled: !!id,
   })
 }
@@ -31,7 +32,7 @@ export const useCreateMeetingMinutes = () => {
   
   return useMutation({
     mutationFn: (data: CreateMeetingMinutesRequest) => 
-      meetingMinutesService.createMeetingMinutes(data),
+      apiService.meetingMinutes.createMeetingMinutes(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['meeting-minutes'] })
     },
@@ -43,7 +44,7 @@ export const useUpdateMeetingMinutes = () => {
   
   return useMutation({
     mutationFn: ({ id, data }: { id: number; data: UpdateMeetingMinutesRequest }) =>
-      meetingMinutesService.updateMeetingMinutes(id, data),
+      apiService.meetingMinutes.updateMeetingMinutes(id, data),
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({ queryKey: ['meeting-minutes'] })
       queryClient.invalidateQueries({ queryKey: ['meeting-minutes', variables.id] })
@@ -55,7 +56,7 @@ export const useDeleteMeetingMinutes = () => {
   const queryClient = useQueryClient()
   
   return useMutation({
-    mutationFn: (id: number) => meetingMinutesService.deleteMeetingMinutes(id),
+    mutationFn: (id: number) => apiService.meetingMinutes.deleteMeetingMinutes(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['meeting-minutes'] })
     },
@@ -66,7 +67,7 @@ export const usePublishMeetingMinutes = () => {
   const queryClient = useQueryClient()
   
   return useMutation({
-    mutationFn: (id: number) => meetingMinutesService.publishMeetingMinutes(id),
+    mutationFn: (id: number) => apiService.meetingMinutes.publishMeetingMinutes(id),
     onSuccess: (_, id) => {
       queryClient.invalidateQueries({ queryKey: ['meeting-minutes'] })
       queryClient.invalidateQueries({ queryKey: ['meeting-minutes', id] })
@@ -77,7 +78,7 @@ export const usePublishMeetingMinutes = () => {
 export const useActionItems = (meetingId: number) => {
   return useQuery({
     queryKey: ['meeting-minutes', meetingId, 'action-items'],
-    queryFn: () => meetingMinutesService.getActionItems(meetingId),
+    queryFn: () => apiService.meetingMinutes.getActionItems(meetingId),
     enabled: !!meetingId,
   })
 }
@@ -100,7 +101,7 @@ export const useConvertActionItemToIssue = () => {
         labels?: string[];
         milestone?: string;
       }
-    }) => meetingMinutesService.convertActionItemToIssue(meetingId, actionItemId, issueData),
+    }) => apiService.meetingMinutes.convertActionItemToIssue(meetingId, actionItemId, issueData),
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({ queryKey: ['meeting-minutes', variables.meetingId, 'action-items'] })
       queryClient.invalidateQueries({ queryKey: ['issues'] })
@@ -120,7 +121,7 @@ export const useUpdateActionItem = () => {
       meetingId: number; 
       actionItemId: number; 
       data: Partial<ActionItem> 
-    }) => meetingMinutesService.updateActionItem(meetingId, actionItemId, data),
+    }) => apiService.meetingMinutes.updateActionItem(meetingId, actionItemId, data),
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({ queryKey: ['meeting-minutes', variables.meetingId, 'action-items'] })
     },
@@ -138,7 +139,7 @@ export const useSearchMeetingMinutes = (
 ) => {
   return useQuery({
     queryKey: ['meeting-minutes', 'search', query, filters],
-    queryFn: () => meetingMinutesService.searchMeetingMinutes(query, filters),
+    queryFn: () => apiService.meetingMinutes.searchMeetingMinutes(query, filters),
     enabled: !!query,
   })
 }

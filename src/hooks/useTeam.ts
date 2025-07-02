@@ -1,18 +1,18 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { teamService } from '@/services/api'
-import type { TeamMember, CreateReminderRequest } from '@/types/Team.types'
+import apiService from '@/services/ApiServiceProxy'
+import type { TeamMember, CreateReminderRequest, Reminder } from '@/types/Team.types'
 
 export const useTeamMembers = () => {
   return useQuery({
     queryKey: ['team', 'members'],
-    queryFn: () => teamService.getTeamMembers(),
+    queryFn: () => apiService.team.getTeamMembers(),
   })
 }
 
 export const useTeamMember = (id: string) => {
   return useQuery({
     queryKey: ['team', 'members', id],
-    queryFn: () => teamService.getTeamMember(id),
+    queryFn: () => apiService.team.getTeamMember(id),
     enabled: !!id,
   })
 }
@@ -22,7 +22,7 @@ export const useUpdateTeamMember = () => {
   
   return useMutation({
     mutationFn: ({ id, data }: { id: string; data: Partial<TeamMember> }) =>
-      teamService.updateTeamMember(id, data),
+      apiService.team.updateTeamMember(id, data),
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({ queryKey: ['team', 'members'] })
       queryClient.invalidateQueries({ queryKey: ['team', 'members', variables.id] })
@@ -30,10 +30,10 @@ export const useUpdateTeamMember = () => {
   })
 }
 
-export const useWorkloadSummary = (memberId?: string) => {
+export const useWorkloadSummary = () => {
   return useQuery({
-    queryKey: ['team', 'workload', memberId],
-    queryFn: () => teamService.getWorkloadSummary(memberId),
+    queryKey: ['team', 'workload'],
+    queryFn: () => apiService.team.getWorkloadSummary(),
   })
 }
 
@@ -45,18 +45,19 @@ export interface RemindersParams {
   limit?: number
 }
 
-export const useReminders = (params?: RemindersParams) => {
+export const useReminders = () => {
   return useQuery({
-    queryKey: ['team', 'reminders', params],
-    queryFn: () => teamService.getReminders(params),
+    queryKey: ['team', 'reminders'],
+    queryFn: () => apiService.team.getReminders(),
   })
 }
+
 
 export const useCreateReminder = () => {
   const queryClient = useQueryClient()
   
   return useMutation({
-    mutationFn: (data: CreateReminderRequest) => teamService.createReminder(data),
+    mutationFn: (data: CreateReminderRequest) => apiService.team.createReminder(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['team', 'reminders'] })
     },
@@ -68,7 +69,7 @@ export const useUpdateReminder = () => {
   
   return useMutation({
     mutationFn: ({ id, data }: { id: number; data: Partial<Reminder> }) =>
-      teamService.updateReminder(id, data),
+      apiService.team.updateReminder(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['team', 'reminders'] })
     },
@@ -79,7 +80,7 @@ export const useAcknowledgeReminder = () => {
   const queryClient = useQueryClient()
   
   return useMutation({
-    mutationFn: (id: number) => teamService.acknowledgeReminder(id),
+    mutationFn: (id: number) => apiService.team.acknowledgeReminder(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['team', 'reminders'] })
     },
@@ -90,7 +91,7 @@ export const useDismissReminder = () => {
   const queryClient = useQueryClient()
   
   return useMutation({
-    mutationFn: (id: number) => teamService.dismissReminder(id),
+    mutationFn: (id: number) => apiService.team.dismissReminder(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['team', 'reminders'] })
     },
@@ -101,7 +102,7 @@ export const useSendReminders = () => {
   const queryClient = useQueryClient()
   
   return useMutation({
-    mutationFn: (reminderIds: number[]) => teamService.sendReminders(reminderIds),
+    mutationFn: (reminderIds: number[]) => apiService.team.sendReminders(reminderIds),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['team', 'reminders'] })
     },
@@ -111,7 +112,7 @@ export const useSendReminders = () => {
 export const useTeamUpcomingDeadlines = (memberId?: string, days?: number) => {
   return useQuery({
     queryKey: ['team', 'deadlines', memberId, days],
-    queryFn: () => teamService.getUpcomingDeadlines(memberId, days),
+    queryFn: () => apiService.team.getUpcomingDeadlines(memberId, days),
   })
 }
 
@@ -128,7 +129,7 @@ export const useCreateBulkReminders = () => {
         priority: 'low' | 'medium' | 'high';
       };
       dueDate: string;
-    }) => teamService.createBulkReminders(data),
+    }) => apiService.team.createBulkReminders(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['team', 'reminders'] })
     },
