@@ -9,7 +9,8 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { PageLayout, PageHeader } from '@/components/layout';
 import { UserAvatar, LabelBadge } from '@/components/common';
-import { ArrowLeft, X } from 'lucide-react';
+import { useCreateIssueMutation, useUsers, useLabels, useMilestones, useProjects } from '@/hooks';
+import { ArrowLeft, X, RefreshCw } from 'lucide-react';
 
 const NewIssue = () => {
   const [title, setTitle] = useState('');
@@ -20,32 +21,17 @@ const NewIssue = () => {
   const [selectedProject, setSelectedProject] = useState('');
   const navigate = useNavigate();
 
-  // Mock data
-  const milestones = [
-    { id: '1', name: 'v1.0.0', description: 'First major release' },
-    { id: '2', name: 'v1.1.0', description: 'Minor feature updates' },
-    { id: '3', name: 'v2.0.0', description: 'Major refactor' }
-  ];
+  // API hooks
+  const createIssueMutation = useCreateIssueMutation();
+  const { data: usersResponse } = useUsers();
+  const { data: labelsResponse } = useLabels();
+  const { data: milestonesResponse } = useMilestones('open');
+  const { data: projectsResponse } = useProjects();
 
-  const users = [
-    { id: '1', username: 'john_doe', avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face' },
-    { id: '2', username: 'jane_smith', avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=32&h=32&fit=crop&crop=face' },
-    { id: '3', username: 'dev_team', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face' }
-  ];
-
-  const labels = [
-    { id: '1', name: 'bug', color: '#d73a49' },
-    { id: '2', name: 'enhancement', color: '#a2eeef' },
-    { id: '3', name: 'documentation', color: '#0075ca' },
-    { id: '4', name: 'good first issue', color: '#7057ff' },
-    { id: '5', name: 'help wanted', color: '#008672' }
-  ];
-
-  const projects = [
-    { id: '1', name: 'Web Application' },
-    { id: '2', name: 'Mobile App' },
-    { id: '3', name: 'API Development' }
-  ];
+  const users = usersResponse?.data || [];
+  const labels = labelsResponse?.data || [];
+  const milestones = milestonesResponse?.data || [];
+  const projects = projectsResponse?.data || [];
 
   const handleAssigneeToggle = (userId: string) => {
     setSelectedAssignees(prev => 
@@ -63,18 +49,24 @@ const NewIssue = () => {
     );
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (title.trim() && body.trim()) {
-      console.log('Creating issue:', { 
-        title, 
-        body, 
-        milestone: selectedMilestone,
-        assignees: selectedAssignees,
-        labels: selectedLabels,
-        project: selectedProject
-      });
-      navigate('/issues');
+      try {
+        const issueData = {
+          title: title.trim(),
+          body: body.trim(),
+          assigneeIds: selectedAssignees.length > 0 ? selectedAssignees : undefined,
+          labelIds: selectedLabels.length > 0 ? selectedLabels : undefined,
+          milestoneId: selectedMilestone || undefined,
+          projectId: selectedProject || undefined,
+        };
+
+        const response = await createIssueMutation.mutateAsync(issueData);
+        navigate(`/issues/${response.data.number}`);
+      } catch (error) {
+        // Error handling is done in the mutation
+      }
     }
   };
 
@@ -130,8 +122,19 @@ const NewIssue = () => {
                   </div>
 
                   <div className="flex gap-2">
-                    <Button type="submit" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                      Submit new issue
+                    <Button 
+                      type="submit" 
+                      className="bg-primary text-primary-foreground hover:bg-primary/90"
+                      disabled={!title.trim() || !body.trim() || createIssueMutation.isPending}
+                    >
+                      {createIssueMutation.isPending ? (
+                        <>
+                          <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
+                          Creating...
+                        </>
+                      ) : (
+                        'Submit new issue'
+                      )}
                     </Button>
                     <Link to="/issues">
                       <Button type="button" variant="outline">

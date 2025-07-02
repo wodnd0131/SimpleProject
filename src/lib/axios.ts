@@ -1,5 +1,5 @@
 import axios from 'axios'
-import toastService from '@/services/ToastService'
+import toastService from '@/lib/toast'
 
 const baseURL = import.meta.env.VITE_API_BASE_URL
 

@@ -1,0 +1,12 @@
+export { default as issueService } from './IssueService'
+export { default as userService } from './UserService'
+export { default as labelService } from './LabelService'
+export { default as milestoneService } from './MilestoneService'
+export { default as projectService } from './ProjectService'
+
+export * from './IssueService'
+export * from './UserService'
+export * from './LabelService'
+export * from './MilestoneService'
+export * from './ProjectService'
+export * from './BaseService'
