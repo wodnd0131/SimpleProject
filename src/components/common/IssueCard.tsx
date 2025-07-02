@@ -131,9 +131,9 @@ export const IssueCard = ({
     </Card>
   );
 
-  <Link to={`/issues/${issue.number}`} className="block">
-    {cardContent}
-  </Link>;
-
-  return cardContent;
+  return (
+    <Link to={`/issues/${issue.number}`} className="block">
+      {cardContent}
+    </Link>
+  );
 };
