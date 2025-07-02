@@ -7,8 +7,9 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, X, Plus } from 'lucide-react';
+import { PageLayout, PageHeader } from '@/components/layout';
+import { UserAvatar, LabelBadge } from '@/components/common';
+import { ArrowLeft, X } from 'lucide-react';
 
 const NewIssue = () => {
   const [title, setTitle] = useState('');
@@ -78,20 +79,21 @@ const NewIssue = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
-        <div className="mb-6">
-          <Link to="/issues">
-            <Button variant="outline" className="mb-4">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to issues
-            </Button>
-          </Link>
-          
-          <h1 className="text-2xl font-bold text-foreground">New issue</h1>
-        </div>
+    <PageLayout>
+      <Link to="/issues">
+        <Button variant="outline" className="mb-4">
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back to issues
+        </Button>
+      </Link>
+      
+      <PageHeader 
+        title="New issue" 
+        titleSize="lg"
+        size="md"
+      />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2">
             <Card className="bg-card border-border">
               <CardHeader>
@@ -158,7 +160,11 @@ const NewIssue = () => {
                       onChange={() => handleAssigneeToggle(user.id)}
                       className="rounded border-border"
                     />
-                    <img src={user.avatar} alt={user.username} className="w-6 h-6 rounded-full" />
+                    <UserAvatar 
+                      src={user.avatar} 
+                      alt={user.username} 
+                      size="sm"
+                    />
                     <label htmlFor={`assignee-${user.id}`} className="text-sm text-card-foreground cursor-pointer">
                       {user.username}
                     </label>
@@ -177,17 +183,13 @@ const NewIssue = () => {
                   {selectedLabels.map(labelId => {
                     const label = labels.find(l => l.id === labelId);
                     return label ? (
-                      <Badge 
+                      <LabelBadge
                         key={label.id}
-                        style={{ backgroundColor: label.color + '20', color: label.color }}
-                        className="text-xs flex items-center gap-1"
-                      >
-                        {label.name}
-                        <X 
-                          className="w-3 h-3 cursor-pointer" 
-                          onClick={() => handleLabelToggle(label.id)}
-                        />
-                      </Badge>
+                        label={label}
+                        size="sm"
+                        removable
+                        onRemove={() => handleLabelToggle(label.id)}
+                      />
                     ) : null;
                   })}
                 </div>
@@ -256,10 +258,9 @@ const NewIssue = () => {
                 </Select>
               </CardContent>
             </Card>
-          </div>
         </div>
       </div>
-    </div>
+    </PageLayout>
   );
 };
 
