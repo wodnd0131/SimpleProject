@@ -54,10 +54,10 @@ const TeamDashboard = () => {
 
   const getWorkloadLevel = (capacity: number, current: number) => {
     const percentage = (current / capacity) * 100;
-    if (percentage > 90) return { level: 'overloaded', color: 'destructive' };
-    if (percentage > 75) return { level: 'busy', color: 'default' };
-    if (percentage > 50) return { level: 'moderate', color: 'secondary' };
-    return { level: 'light', color: 'outline' };
+    if (percentage > 90) return { level: '과부하', color: 'destructive' };
+    if (percentage > 75) return { level: '바쁨', color: 'default' };
+    if (percentage > 50) return { level: '보통', color: 'secondary' };
+    return { level: '여유', color: 'outline' };
   };
 
   const StatCard = ({ 
@@ -90,17 +90,17 @@ const TeamDashboard = () => {
   return (
     <PageLayout>
       <PageHeader
-        title="Team Dashboard"
-        subtitle="Monitor team workload and manage assignments"
+        title="팀 대시보드"
+        subtitle="팀 업무량 모니터링 및 업무 할당 관리"
         actions={
           <div className="flex items-center gap-2">
             <Button variant="outline" size="sm">
               <Bell className="w-4 h-4 mr-2" />
-              Send Reminders
+              알림 전송
             </Button>
             <Button variant="outline" size="sm">
               <Target className="w-4 h-4 mr-2" />
-              Assign Tasks
+              업무 할당
             </Button>
           </div>
         }
@@ -110,30 +110,30 @@ const TeamDashboard = () => {
         {/* Team Overview Stats */}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <StatCard
-            title="Team Members"
+            title="팀 멤버"
             value={teamMembers.length}
-            description="active collaborators"
+            description="활성 협업자"
             icon={Users}
             loading={teamLoading}
           />
           <StatCard
-            title="Total Assignments"
+            title="총 할당 업무"
             value={workloadSummaries.reduce((sum, w) => sum + w.totalAssigned, 0)}
-            description="across all members"
+            description="모든 멤버 합계"
             icon={Target}
             loading={workloadLoading}
           />
           <StatCard
-            title="Overdue Tasks"
+            title="지연 업무"
             value={workloadSummaries.reduce((sum, w) => sum + w.overdue, 0)}
-            description="require attention"
+            description="조치 필요"
             icon={AlertTriangle}
             loading={workloadLoading}
           />
           <StatCard
-            title="Completion Rate"
+            title="완료율"
             value={Math.round(workloadSummaries.reduce((sum, w) => sum + w.completionRate, 0) / workloadSummaries.length || 0)}
-            description="team average"
+            description="팀 평균"
             icon={TrendingUp}
             loading={workloadLoading}
           />
@@ -141,9 +141,9 @@ const TeamDashboard = () => {
 
         <Tabs defaultValue="workload" className="space-y-4">
           <TabsList>
-            <TabsTrigger value="workload">Team Workload</TabsTrigger>
-            <TabsTrigger value="reminders">Reminders</TabsTrigger>
-            <TabsTrigger value="deadlines">Upcoming Deadlines</TabsTrigger>
+            <TabsTrigger value="workload">팀 업무량</TabsTrigger>
+            <TabsTrigger value="reminders">알림</TabsTrigger>
+            <TabsTrigger value="deadlines">예정된 마감일</TabsTrigger>
           </TabsList>
 
           <TabsContent value="workload" className="space-y-4">
@@ -210,12 +210,12 @@ const TeamDashboard = () => {
                         <div className="space-y-3">
                           <div className="space-y-1">
                             <div className="flex justify-between text-sm">
-                              <span>Workload</span>
+                              <span>업무량</span>
                               <span>{member.currentWorkload}/{member.workloadCapacity}</span>
                             </div>
                             <Progress value={utilizationPercentage} className="h-2" />
                             <p className="text-xs text-muted-foreground">
-                              {utilizationPercentage.toFixed(0)}% capacity utilized
+                              {utilizationPercentage.toFixed(0)}% 용량 사용
                             </p>
                           </div>
 
@@ -223,18 +223,18 @@ const TeamDashboard = () => {
                             <div className="grid grid-cols-2 gap-2 text-sm">
                               <div className="text-center p-2 bg-muted rounded">
                                 <div className="font-semibold text-lg">{workload.inProgress}</div>
-                                <div className="text-xs text-muted-foreground">In Progress</div>
+                                <div className="text-xs text-muted-foreground">진행 중</div>
                               </div>
                               <div className="text-center p-2 bg-muted rounded">
                                 <div className="font-semibold text-lg">{workload.overdue}</div>
-                                <div className="text-xs text-muted-foreground">Overdue</div>
+                                <div className="text-xs text-muted-foreground">지연</div>
                               </div>
                             </div>
                           )}
 
                           {workload && (
                             <div className="text-xs text-muted-foreground">
-                              Completion rate: {workload.completionRate.toFixed(1)}%
+                              완료율: {workload.completionRate.toFixed(1)}%
                             </div>
                           )}
                         </div>
@@ -249,8 +249,8 @@ const TeamDashboard = () => {
           <TabsContent value="reminders" className="space-y-4">
             <Card>
               <CardHeader>
-                <CardTitle>Active Reminders</CardTitle>
-                <CardDescription>Pending notifications and alerts</CardDescription>
+                <CardTitle>활성 알림</CardTitle>
+                <CardDescription>대기 중인 알림 및 경고</CardDescription>
               </CardHeader>
               <CardContent>
                 {remindersLoading ? (
@@ -269,7 +269,7 @@ const TeamDashboard = () => {
                 ) : reminders.length === 0 ? (
                   <div className="text-center py-8 text-muted-foreground">
                     <Bell className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                    <p>No active reminders</p>
+                    <p>활성 알림이 없습니다</p>
                   </div>
                 ) : (
                   <div className="space-y-3">
@@ -286,7 +286,7 @@ const TeamDashboard = () => {
                           reminder.priority === 'high' ? 'destructive' :
                           reminder.priority === 'medium' ? 'default' : 'secondary'
                         }>
-                          {reminder.priority}
+                          {reminder.priority === 'high' ? '높음' : reminder.priority === 'medium' ? '보통' : '낮음'}
                         </Badge>
                       </div>
                     ))}
@@ -299,8 +299,8 @@ const TeamDashboard = () => {
           <TabsContent value="deadlines" className="space-y-4">
             <Card>
               <CardHeader>
-                <CardTitle>Upcoming Deadlines</CardTitle>
-                <CardDescription>Tasks and meetings due soon</CardDescription>
+                <CardTitle>예정된 마감일</CardTitle>
+                <CardDescription>곧 마감되는 업무와 회의</CardDescription>
               </CardHeader>
               <CardContent>
                 {deadlinesLoading ? (
@@ -319,7 +319,7 @@ const TeamDashboard = () => {
                 ) : deadlines.length === 0 ? (
                   <div className="text-center py-8 text-muted-foreground">
                     <Calendar className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                    <p>No upcoming deadlines</p>
+                    <p>예정된 마감일이 없습니다</p>
                   </div>
                 ) : (
                   <div className="space-y-3">
@@ -329,7 +329,7 @@ const TeamDashboard = () => {
                         <div className="flex-1 min-w-0">
                           <p className="text-sm font-medium">{deadline.title}</p>
                           <p className="text-xs text-muted-foreground">
-                            Assigned to {deadline.assignee.username}
+                            {deadline.assignee.username}에게 할당됨
                           </p>
                         </div>
                         <div className="text-right">
@@ -338,7 +338,7 @@ const TeamDashboard = () => {
                             deadline.daysRemaining <= 1 ? 'destructive' :
                             deadline.daysRemaining <= 3 ? 'default' : 'secondary'
                           }>
-                            {deadline.status === 'overdue' ? 'Overdue' : `${deadline.daysRemaining}d left`}
+                            {deadline.status === 'overdue' ? '지연됨' : `${deadline.daysRemaining}일 남음`}
                           </Badge>
                         </div>
                       </div>

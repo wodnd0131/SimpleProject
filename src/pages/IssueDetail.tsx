@@ -44,7 +44,7 @@ const IssueDetail = () => {
         <Link to="/issues">
           <Button variant="outline" className="mb-4">
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to issues
+            이슈로 돌아가기
           </Button>
         </Link>
         
@@ -63,14 +63,14 @@ const IssueDetail = () => {
         <Link to="/issues">
           <Button variant="outline" className="mb-4">
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to issues
+            이슈로 돌아가기
           </Button>
         </Link>
         
         <div className="flex items-center justify-center min-h-96">
           <div className="text-center">
             <h1 className="text-2xl font-bold mb-4">
-              {issueError ? 'Error loading issue' : 'Issue not found'}
+              {issueError ? '이슈 로드 오류' : '이슈를 찾을 수 없습니다'}
             </h1>
             {issueError && (
               <p className="text-destructive mb-4">
@@ -80,7 +80,7 @@ const IssueDetail = () => {
             <div className="space-x-2">
               <Button variant="outline" onClick={() => refetchIssue()}>
                 <RefreshCw className="w-4 h-4 mr-2" />
-                Try Again
+                다시 시도
               </Button>
             </div>
           </div>
@@ -121,7 +121,7 @@ const IssueDetail = () => {
         <Link to="/issues">
           <Button variant="outline" className="mb-4">
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to issues
+            이슈로 돌아가기
           </Button>
         </Link>
         
@@ -140,7 +140,7 @@ const IssueDetail = () => {
             </StatusBadge>
             
             <div className="text-sm text-muted-foreground">
-              <span>opened {formatDistanceToNow(new Date(issue.createdAt))} ago by </span>
+              <span>{formatDistanceToNow(new Date(issue.createdAt), { addSuffix: true })} </span>
               <span className="font-medium">{issue.author.username}</span>
             </div>
           </div>
@@ -153,7 +153,7 @@ const IssueDetail = () => {
             {closeIssueMutation.isPending || reopenIssueMutation.isPending ? (
               <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
             ) : null}
-            {issue.state === 'open' ? 'Close issue' : 'Reopen issue'}
+            {issue.state === 'open' ? '이슈 닫기' : '이슈 다시 열기'}
           </Button>
         </div>
         
@@ -209,11 +209,11 @@ const IssueDetail = () => {
 
             <Card>
               <CardHeader>
-                <h3 className="font-medium">Add a comment</h3>
+                <h3 className="font-medium">댓글 추가</h3>
               </CardHeader>
               <CardContent className="space-y-4">
                 <Textarea
-                  placeholder="Leave a comment"
+                  placeholder="댓글을 남겨주세요"
                   value={newComment}
                   onChange={(e) => setNewComment(e.target.value)}
                   rows={4}
@@ -226,10 +226,10 @@ const IssueDetail = () => {
                     {addCommentMutation.isPending ? (
                       <>
                         <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
-                        Adding...
+                        추가 중...
                       </>
                     ) : (
-                      'Comment'
+                      '댓글'
                     )}
                   </Button>
                 </div>
@@ -240,7 +240,7 @@ const IssueDetail = () => {
         <div className="space-y-4">
           <Card>
             <CardHeader>
-              <h3 className="font-medium">Assignees</h3>
+              <h3 className="font-medium">담당자</h3>
             </CardHeader>
             <CardContent>
               {issue.assignees.length > 0 ? (
@@ -257,14 +257,14 @@ const IssueDetail = () => {
                   ))}
                 </div>
               ) : (
-                <p className="text-sm text-muted-foreground">No one assigned</p>
+                <p className="text-sm text-muted-foreground">담당자 없음</p>
               )}
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <h3 className="font-medium">Labels</h3>
+              <h3 className="font-medium">라벨</h3>
             </CardHeader>
             <CardContent>
               {issue.labels.length > 0 ? (
@@ -278,7 +278,7 @@ const IssueDetail = () => {
                   ))}
                 </div>
               ) : (
-                <p className="text-sm text-muted-foreground">None yet</p>
+                <p className="text-sm text-muted-foreground">아직 없음</p>
               )}
             </CardContent>
           </Card>

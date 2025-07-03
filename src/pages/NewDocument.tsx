@@ -22,13 +22,13 @@ const NewDocument = () => {
   const navigate = useNavigate()
 
   const documentTypes = [
-    { value: 'meeting-notes', label: 'Meeting Notes', description: 'Record meeting discussions and action items' },
-    { value: 'project-update', label: 'Project Update', description: 'Share project progress and status' },
-    { value: 'technical-spec', label: 'Technical Specification', description: 'Document technical requirements and design' },
-    { value: 'general', label: 'General Document', description: 'Free-form documentation' }
+    { value: 'meeting-notes', label: '회의록', description: '회의 논의 및 액션 아이템 기록' },
+    { value: 'project-update', label: '프로젝트 업데이트', description: '프로젝트 진행 상황 및 상태 공유' },
+    { value: 'technical-spec', label: '기술 명세서', description: '기술 요구사항 및 설계 문서화' },
+    { value: 'general', label: '일반 문서', description: '자유 형식 문서' }
   ]
 
-  const commonTags = ['meeting', 'project-update', 'planning', 'review', 'technical', 'design', 'development', 'testing']
+  const commonTags = ['회의', '프로젝트-업데이트', '계획', '검토', '기술', '디자인', '개발', '테스트']
 
   const handleTemplateSelect = (templateId: string) => {
     const template = mockDocumentTemplates.find(t => t.id === templateId)
@@ -87,12 +87,12 @@ const NewDocument = () => {
       <Link to="/docs">
         <Button variant="outline" className="mb-4">
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to documents
+          문서로 돌아가기
         </Button>
       </Link>
       
       <PageHeader 
-        title="Create New Document" 
+        title="새 문서 작성" 
         titleSize="lg"
         size="md"
       />
@@ -102,7 +102,7 @@ const NewDocument = () => {
           <CardHeader className="pb-3">
             <CardTitle className="flex items-center gap-2 text-blue-800">
               <Sparkles className="w-5 h-5" />
-              AI Analysis Complete
+              AI 분석 완료
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -112,24 +112,24 @@ const NewDocument = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="flex items-center gap-2 text-sm">
                   <CheckCircle className="w-4 h-4 text-green-600" />
-                  <span>{mockAiResults.extractedActionItems} action items extracted</span>
+                  <span>{mockAiResults.extractedActionItems}건의 액션 아이템 추출</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                   <AlertCircle className="w-4 h-4 text-orange-600" />
-                  <span>{mockAiResults.generatedIssues} issues created</span>
+                  <span>{mockAiResults.generatedIssues}건의 이슈 생성</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                   <Clock className="w-4 h-4 text-blue-600" />
-                  <span>{mockAiResults.generatedReminders} reminders set</span>
+                  <span>{mockAiResults.generatedReminders}건의 알림 설정</span>
                 </div>
               </div>
               
               <div className="mt-4 p-3 bg-white rounded border border-blue-200">
-                <h4 className="font-medium text-blue-800 mb-2">Generated Issues:</h4>
+                <h4 className="font-medium text-blue-800 mb-2">생성된 이슈:</h4>
                 <ul className="space-y-1 text-sm text-blue-700">
-                  <li>• #101 - Implement OAuth 2.0 authentication flow</li>
-                  <li>• #102 - Create dashboard widget customization panel</li>
-                  <li>• #103 - Set up automated CI/CD pipeline</li>
+                  <li>• #101 - OAuth 2.0 인증 플로우 구현</li>
+                  <li>• #102 - 대시보드 위젯 커스터마이제이션 패널 생성</li>
+                  <li>• #103 - 자동화된 CI/CD 파이프라인 설정</li>
                 </ul>
               </div>
             </div>
@@ -142,14 +142,14 @@ const NewDocument = () => {
           {/* Document Form */}
           <Card className="bg-card border-border">
             <CardHeader>
-              <CardTitle className="text-card-foreground">Document Details</CardTitle>
+              <CardTitle className="text-card-foreground">문서 세부 사항</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="title" className="text-card-foreground">Title</Label>
+                <Label htmlFor="title" className="text-card-foreground">제목</Label>
                 <Input
                   id="title"
-                  placeholder="Document title"
+                  placeholder="문서 제목"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   className="bg-input border-border text-foreground"
@@ -157,10 +157,10 @@ const NewDocument = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="type" className="text-card-foreground">Document Type</Label>
+                <Label htmlFor="type" className="text-card-foreground">문서 유형</Label>
                 <Select value={selectedType} onValueChange={setSelectedType}>
                   <SelectTrigger className="bg-input border-border text-foreground">
-                    <SelectValue placeholder="Choose document type" />
+                    <SelectValue placeholder="문서 유형 선택" />
                   </SelectTrigger>
                   <SelectContent className="bg-popover border-border">
                     {documentTypes.map(type => (
@@ -176,17 +176,17 @@ const NewDocument = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="content" className="text-card-foreground">Content</Label>
+                <Label htmlFor="content" className="text-card-foreground">내용</Label>
                 <Textarea
                   id="content"
-                  placeholder="Write your document content here... You can use Markdown formatting."
+                  placeholder="여기에 문서 내용을 작성하세요... 마크다운 포맷을 사용할 수 있습니다."
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
                   rows={15}
                   className="bg-input border-border text-foreground font-mono text-sm"
                 />
                 <p className="text-sm text-muted-foreground">
-                  Supports Markdown formatting. The AI will automatically extract action items and create issues after saving.
+                  마크다운 포맷을 지원합니다. 저장 후 AI가 자동으로 액션 아이템을 추출하고 이슈를 생성합니다.
                 </p>
               </div>
 
@@ -199,18 +199,18 @@ const NewDocument = () => {
                   {isSaving ? (
                     <>
                       <Sparkles className="w-4 h-4 mr-2 animate-spin" />
-                      Processing with AI...
+                      AI로 처리 중...
                     </>
                   ) : (
                     <>
                       <Save className="w-4 h-4 mr-2" />
-                      Save & Analyze
+                      저장 및 분석
                     </>
                   )}
                 </Button>
                 <Link to="/docs">
                   <Button type="button" variant="outline">
-                    Cancel
+                    취소
                   </Button>
                 </Link>
               </div>
@@ -222,7 +222,7 @@ const NewDocument = () => {
           {/* Templates */}
           <Card className="bg-card border-border">
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm text-card-foreground">Templates</CardTitle>
+              <CardTitle className="text-sm text-card-foreground">템플릿</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
               {mockDocumentTemplates.map(template => (
@@ -241,19 +241,19 @@ const NewDocument = () => {
           {/* Tags */}
           <Card className="bg-card border-border">
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm text-card-foreground">Tags</CardTitle>
+              <CardTitle className="text-sm text-card-foreground">태그</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="flex gap-2">
                 <Input
-                  placeholder="Add tag"
+                  placeholder="태그 추가"
                   value={newTag}
                   onChange={(e) => setNewTag(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleAddTag()}
                   className="bg-input border-border text-foreground text-sm"
                 />
                 <Button size="sm" onClick={handleAddTag} disabled={!newTag.trim()}>
-                  Add
+                  추가
                 </Button>
               </div>
               
@@ -272,7 +272,7 @@ const NewDocument = () => {
               )}
               
               <div className="space-y-1">
-                <p className="text-xs text-muted-foreground">Common tags:</p>
+                <p className="text-xs text-muted-foreground">일반 태그:</p>
                 <div className="flex flex-wrap gap-1">
                   {commonTags.map(tag => (
                     <button
@@ -294,16 +294,16 @@ const NewDocument = () => {
             <CardHeader className="pb-3">
               <CardTitle className="text-sm text-card-foreground flex items-center gap-2">
                 <Sparkles className="w-4 h-4" />
-                AI Features
+                AI 기능
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-2 text-sm text-muted-foreground">
-              <p>After saving, AI will automatically:</p>
+              <p>저장 후 AI가 자동으로:</p>
               <ul className="space-y-1 ml-2">
-                <li>• Extract action items from content</li>
-                <li>• Create issues for development tasks</li>
-                <li>• Set reminders for team members</li>
-                <li>• Identify project timeline updates</li>
+                <li>• 내용에서 액션 아이템 추출</li>
+                <li>• 개발 작업에 대한 이슈 생성</li>
+                <li>• 팀 멤버에게 알림 설정</li>
+                <li>• 프로젝트 일정 업데이트 식별</li>
               </ul>
             </CardContent>
           </Card>

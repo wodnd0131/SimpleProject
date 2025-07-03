@@ -86,13 +86,13 @@ const Meetings = () => {
     return (
       <PageLayout>
         <PageHeader
-          title="Meeting Minutes"
-          subtitle="Manage and review your meeting records"
+          title="회의록"
+          subtitle="회의 기록 관리 및 검토"
           actions={
             <Link to="/meetings/new">
               <Button className="bg-blue-600 hover:bg-blue-700">
                 <Plus className="w-4 h-4 mr-2" />
-                New Meeting
+                새 회의
               </Button>
             </Link>
           }
@@ -111,13 +111,13 @@ const Meetings = () => {
   if (isError) {
     return (
       <PageLayout>
-        <PageHeader title="Meeting Minutes" />
+        <PageHeader title="회의록" />
         <div className="text-center py-12">
           <p className="text-destructive mb-4">
-            Failed to load meetings: {error?.message}
+            회의 로드 실패: {error?.message}
           </p>
           <Button variant="outline" onClick={() => refetch()}>
-            Try Again
+            다시 시도
           </Button>
         </div>
       </PageLayout>
@@ -127,8 +127,8 @@ const Meetings = () => {
   return (
     <PageLayout>
       <PageHeader
-        title="Meeting Minutes"
-        subtitle={`${filteredMeetings.length} meeting records`}
+        title="회의록"
+        subtitle={`${filteredMeetings.length}건의 회의 기록`}
         actions={
           <Link to="/meetings/new">
             <Button className="bg-blue-600 hover:bg-blue-700">
@@ -146,7 +146,7 @@ const Meetings = () => {
             <SearchInput
               value={searchQuery}
               onChange={setSearchQuery}
-              placeholder="Search meetings by title or participant..."
+              placeholder="제목 또는 참석자로 회의 검색..."
             />
           </div>
           <div className="flex items-center space-x-2">
@@ -157,7 +157,7 @@ const Meetings = () => {
                 size="sm"
                 onClick={() => setStatusFilter(status)}
               >
-                {status.charAt(0).toUpperCase() + status.slice(1)}
+                {status === 'all' ? '전체' : status === 'published' ? '게시됨' : status === 'draft' ? '초안' : '보관됨'}
               </Button>
             ))}
           </div>
@@ -167,17 +167,17 @@ const Meetings = () => {
         {filteredMeetings.length === 0 ? (
           <div className="text-center py-12 text-muted-foreground">
             <Calendar className="w-12 h-12 mx-auto mb-4 opacity-50" />
-            <h3 className="text-lg font-semibold mb-2">No meetings found</h3>
+            <h3 className="text-lg font-semibold mb-2">회의를 찾을 수 없습니다</h3>
             <p>
               {searchQuery ? 
-                'Try adjusting your search terms or filters' : 
-                'Get started by creating your first meeting minutes'
+                '검색 조건이나 필터를 조정해 보세요' : 
+                '첫 번째 회의록을 작성하여 시작하세요'
               }
             </p>
             <Link to="/meetings/new">
               <Button className="mt-4">
                 <Plus className="w-4 h-4 mr-2" />
-                Create Meeting Minutes
+                회의록 작성
               </Button>
             </Link>
           </div>
@@ -216,12 +216,12 @@ const Meetings = () => {
                     
                     <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                       <Users className="w-4 h-4" />
-                      <span>{meeting.participants.length} participants</span>
+                      <span>{meeting.participants.length}명 참석</span>
                     </div>
 
                     <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                       <FileText className="w-4 h-4" />
-                      <span>{meeting.actionItems.length} action items</span>
+                      <span>{meeting.actionItems.length}건의 액션 아이템</span>
                     </div>
 
                     {/* Participants Avatars */}
