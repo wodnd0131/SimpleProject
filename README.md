@@ -12,11 +12,11 @@
 
 # 서비스 배포 페이지
 
-서비스 프로토타입
-https://wodnd0131.github.io/ToyDocs
+[서비스 프로토타입](https://wodnd0131.github.io/ToyDocs)
+- `회의록 추출` 기능을 체험해보세요!
 
-통합 환경 디자인 프로토타입
-https://wodnd0131.github.io/SimpleProject
+[협업 환경 프로토타입](https://wodnd0131.github.io/SimpleProject)
+- `협업 환경` 디자인을 확인해보세요!
 
 # 프로젝트 매니징 서비스 유저 시나리오
 
