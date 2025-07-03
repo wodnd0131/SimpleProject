@@ -69,16 +69,15 @@ export const IssueCard = ({
                   <span>#{issue.number}</span>
                   <span>•</span>
                   <span>
-                    opened {formatDistanceToNow(new Date(issue.createdAt))} ago
+                    {formatDistanceToNow(new Date(issue.createdAt))} 전 열림
                   </span>
                   <span>•</span>
-                  <span>by {issue.author.username}</span>
+                  <span>{issue.author.username} 작성</span>
                   {showCommentCount && issue.comments.length > 0 && (
                     <>
                       <span>•</span>
                       <span>
-                        {issue.comments.length} comment
-                        {issue.comments.length !== 1 ? "s" : ""}
+                        댓글 {issue.comments.length}개
                       </span>
                     </>
                   )}

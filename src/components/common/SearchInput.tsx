@@ -32,7 +32,7 @@ interface SearchInputProps extends VariantProps<typeof searchInputVariants> {
 export const SearchInput = ({ 
   value, 
   onChange, 
-  placeholder = 'Search...', 
+  placeholder = '검색...', 
   size, 
   className, 
   icon,

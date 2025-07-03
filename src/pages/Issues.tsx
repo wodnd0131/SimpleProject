@@ -62,11 +62,11 @@ const Issues = () => {
       return (
         <div className="text-center py-12">
           <p className="text-destructive mb-4">
-            Failed to load issues: {error?.message}
+            이슈 로드 실패: {error?.message}
           </p>
           <Button variant="outline" onClick={() => refetch()}>
             <RefreshCw className="w-4 h-4 mr-2" />
-            Try Again
+            다시 시도
           </Button>
         </div>
       );
@@ -75,10 +75,10 @@ const Issues = () => {
     if (issues.length === 0) {
       return (
         <div className="text-center py-12 text-muted-foreground">
-          <p>No issues found</p>
+          <p>이슈를 찾을 수 없습니다</p>
           {searchQuery && (
             <p className="text-sm mt-2">
-              Try adjusting your search terms
+              검색 조건을 조정해보세요
             </p>
           )}
         </div>
@@ -97,9 +97,9 @@ const Issues = () => {
   return (
     <PageLayout>
       <PageHeader
-        title="Issues"
+        title="이슈"
         subtitle={issuesResponse?.pagination ? 
-          `${issuesResponse.pagination.total} total issues` : 
+          `전체 이슈 ${issuesResponse.pagination.total}개` : 
           undefined
         }
         actions={
@@ -111,12 +111,12 @@ const Issues = () => {
               disabled={isFetching}
             >
               <RefreshCw className={`w-4 h-4 mr-1 ${isFetching ? 'animate-spin' : ''}`} />
-              Refresh
+              새로고침
             </Button>
             <Link to="/issues/new">
               <Button className="bg-green-600 hover:bg-green-700">
                 <Plus className="w-4 h-4 mr-2" />
-                New issue
+                새 이슈
               </Button>
             </Link>
           </div>
@@ -126,7 +126,7 @@ const Issues = () => {
       <SearchInput
         value={searchQuery}
         onChange={setSearchQuery}
-        placeholder="Search issues..."
+        placeholder="이슈 검색..."
         disabled={isLoading}
       />
 

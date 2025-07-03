@@ -39,11 +39,11 @@ export function useCreateIssueMutation() {
     mutationFn: (data: CreateIssueRequest) => apiService.issues.createIssue(data),
     onSuccess: (response) => {
       queryClient.invalidateQueries({ queryKey: queryKeys.issues.lists() })
-      toastService.success('Issue created successfully')
+      toastService.success('이슈가 성공적으로 생성되었습니다')
       return response
     },
     onError: (error: Error) => {
-      toastService.error(error.message, 'Failed to create issue')
+      toastService.error(error.message, '이슈 생성에 실패하였습니다')
     },
   })
 }
@@ -57,11 +57,11 @@ export function useUpdateIssueMutation() {
     onSuccess: (response, { id }) => {
       queryClient.invalidateQueries({ queryKey: queryKeys.issues.detail(id) })
       queryClient.invalidateQueries({ queryKey: queryKeys.issues.lists() })
-      toastService.success('Issue updated successfully')
+      toastService.success('이슈가 성공적으로 업데이트되었습니다')
       return response
     },
     onError: (error: Error) => {
-      toastService.error(error.message, 'Failed to update issue')
+      toastService.error(error.message, '이슈 업데이트에 실패하였습니다')
     },
   })
 }
@@ -74,11 +74,11 @@ export function useCloseIssueMutation() {
     onSuccess: (response, id) => {
       queryClient.invalidateQueries({ queryKey: queryKeys.issues.detail(id) })
       queryClient.invalidateQueries({ queryKey: queryKeys.issues.lists() })
-      toastService.success('Issue closed successfully')
+      toastService.success('이슈가 성공적으로 닫혔습니다')
       return response
     },
     onError: (error: Error) => {
-      toastService.error(error.message, 'Failed to close issue')
+      toastService.error(error.message, '이슈 닫기에 실패하였습니다')
     },
   })
 }
@@ -91,11 +91,11 @@ export function useReopenIssueMutation() {
     onSuccess: (response, id) => {
       queryClient.invalidateQueries({ queryKey: queryKeys.issues.detail(id) })
       queryClient.invalidateQueries({ queryKey: queryKeys.issues.lists() })
-      toastService.success('Issue reopened successfully')
+      toastService.success('이슈가 성공적으로 다시 열렸습니다')
       return response
     },
     onError: (error: Error) => {
-      toastService.error(error.message, 'Failed to reopen issue')
+      toastService.error(error.message, '이슈 다시 열기에 실패하였습니다')
     },
   })
 }
@@ -108,10 +108,10 @@ export function useDeleteIssueMutation() {
     onSuccess: (_, id) => {
       queryClient.invalidateQueries({ queryKey: queryKeys.issues.lists() })
       queryClient.removeQueries({ queryKey: queryKeys.issues.detail(id) })
-      toastService.success('Issue deleted successfully')
+      toastService.success('이슈가 성공적으로 삭제되었습니다')
     },
     onError: (error: Error) => {
-      toastService.error(error.message, 'Failed to delete issue')
+      toastService.error(error.message, '이슈 삭제에 실패하였습니다')
     },
   })
 }
@@ -125,11 +125,11 @@ export function useAddCommentMutation() {
     onSuccess: (response, { issueId }) => {
       queryClient.invalidateQueries({ queryKey: queryKeys.issues.comments(issueId) })
       queryClient.invalidateQueries({ queryKey: queryKeys.issues.detail(issueId) })
-      toastService.success('Comment added successfully')
+      toastService.success('댑글이 성공적으로 추가되었습니다')
       return response
     },
     onError: (error: Error) => {
-      toastService.error(error.message, 'Failed to add comment')
+      toastService.error(error.message, '댑글 추가에 실패하였습니다')
     },
   })
 }
@@ -149,11 +149,11 @@ export function useUpdateCommentMutation() {
     }) => apiService.issues.updateComment(issueId, commentId, { body }),
     onSuccess: (response, { issueId }) => {
       queryClient.invalidateQueries({ queryKey: queryKeys.issues.comments(issueId) })
-      toastService.success('Comment updated successfully')
+      toastService.success('댑글이 성공적으로 업데이트되었습니다')
       return response
     },
     onError: (error: Error) => {
-      toastService.error(error.message, 'Failed to update comment')
+      toastService.error(error.message, '댑글 업데이트에 실패하였습니다')
     },
   })
 }
@@ -166,10 +166,10 @@ export function useDeleteCommentMutation() {
       apiService.issues.deleteComment(issueId, commentId),
     onSuccess: (_, { issueId }) => {
       queryClient.invalidateQueries({ queryKey: queryKeys.issues.comments(issueId) })
-      toastService.success('Comment deleted successfully')
+      toastService.success('댑글이 성공적으로 삭제되었습니다')
     },
     onError: (error: Error) => {
-      toastService.error(error.message, 'Failed to delete comment')
+      toastService.error(error.message, '댑글 삭제에 실패하였습니다')
     },
   })
 }
@@ -208,7 +208,7 @@ export function useOptimisticAddComment() {
       if (context?.previousComments) {
         queryClient.setQueryData(queryKeys.issues.comments(issueId), context.previousComments)
       }
-      toastService.error(error.message, 'Failed to add comment')
+      toastService.error(error.message, '댑글 추가에 실패하였습니다')
     },
     onSettled: (_, __, { issueId }) => {
       queryClient.invalidateQueries({ queryKey: queryKeys.issues.comments(issueId) })

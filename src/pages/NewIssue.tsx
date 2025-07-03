@@ -83,12 +83,12 @@ const NewIssue = () => {
       <Link to="/issues">
         <Button variant="outline" className="mb-4">
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to issues
+          이슈로 돌아가기
         </Button>
       </Link>
       
       <PageHeader 
-        title="New issue" 
+        title="새 이슈" 
         titleSize="lg"
         size="md"
       />
@@ -97,15 +97,15 @@ const NewIssue = () => {
           <div className="lg:col-span-2">
             <Card className="bg-card border-border">
               <CardHeader>
-                <CardTitle className="text-card-foreground">Create a new issue</CardTitle>
+                <CardTitle className="text-card-foreground">새 이슈 만들기</CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-2">
-                    <Label htmlFor="title" className="text-card-foreground">Title</Label>
+                    <Label htmlFor="title" className="text-card-foreground">제목</Label>
                     <Input
                       id="title"
-                      placeholder="Title"
+                      placeholder="제목"
                       value={title}
                       onChange={(e) => setTitle(e.target.value)}
                       required
@@ -114,10 +114,10 @@ const NewIssue = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="body" className="text-card-foreground">Description</Label>
+                    <Label htmlFor="body" className="text-card-foreground">설명</Label>
                     <Textarea
                       id="body"
-                      placeholder="Leave a comment"
+                      placeholder="내용을 입력하세요"
                       value={body}
                       onChange={(e) => setBody(e.target.value)}
                       rows={10}
@@ -125,7 +125,7 @@ const NewIssue = () => {
                       className="bg-input border-border text-foreground"
                     />
                     <p className="text-sm text-muted-foreground">
-                      Describe the issue in detail. You can use Markdown formatting.
+                      이슈를 자세히 설명해주세요. 마크다운 포맷을 사용할 수 있습니다.
                     </p>
                   </div>
 
@@ -138,15 +138,15 @@ const NewIssue = () => {
                       {createIssueMutation.isPending ? (
                         <>
                           <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
-                          Creating...
+                          생성 중...
                         </>
                       ) : (
-                        'Submit new issue'
+                        '새 이슈 제출'
                       )}
                     </Button>
                     <Link to="/issues">
                       <Button type="button" variant="outline">
-                        Cancel
+                        취소
                       </Button>
                     </Link>
                   </div>
@@ -159,7 +159,7 @@ const NewIssue = () => {
             {/* Assignees */}
             <Card className="bg-card border-border">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm text-card-foreground">Assignees</CardTitle>
+                <CardTitle className="text-sm text-card-foreground">담당자</CardTitle>
               </CardHeader>
               <CardContent>
                 <Popover open={assigneePopoverOpen} onOpenChange={setAssigneePopoverOpen}>
@@ -171,18 +171,18 @@ const NewIssue = () => {
                       className="w-full justify-between bg-input border-border text-foreground"
                     >
                       {selectedAssignees.length === 0 ? (
-                        "Select assignees..."
+                        "담당자 선택..."
                       ) : (
-                        `${selectedAssignees.length} selected`
+                        `${selectedAssignees.length}명 선택됨`
                       )}
                       <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent className="w-full p-0 bg-popover border-border">
                     <Command>
-                      <CommandInput placeholder="Search assignees..." className="text-foreground" />
+                      <CommandInput placeholder="담당자 검색..." className="text-foreground" />
                       <CommandList>
-                        <CommandEmpty>No assignees found.</CommandEmpty>
+                        <CommandEmpty>담당자를 찾을 수 없습니다.</CommandEmpty>
                         <CommandGroup>
                           {users.map((user) => (
                             <CommandItem
@@ -246,7 +246,7 @@ const NewIssue = () => {
             {/* Labels */}
             <Card className="bg-card border-border">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm text-card-foreground">Labels</CardTitle>
+                <CardTitle className="text-sm text-card-foreground">라벨</CardTitle>
               </CardHeader>
               <CardContent>
                 <Popover open={labelPopoverOpen} onOpenChange={setLabelPopoverOpen}>
@@ -258,18 +258,18 @@ const NewIssue = () => {
                       className="w-full justify-between bg-input border-border text-foreground"
                     >
                       {selectedLabels.length === 0 ? (
-                        "Select labels..."
+                        "라벨 선택..."
                       ) : (
-                        `${selectedLabels.length} selected`
+                        `${selectedLabels.length}개 선택됨`
                       )}
                       <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent className="w-full p-0 bg-popover border-border">
                     <Command>
-                      <CommandInput placeholder="Search labels..." className="text-foreground" />
+                      <CommandInput placeholder="라벨 검색..." className="text-foreground" />
                       <CommandList>
-                        <CommandEmpty>No labels found.</CommandEmpty>
+                        <CommandEmpty>라벨을 찾을 수 없습니다.</CommandEmpty>
                         <CommandGroup>
                           {labels.map((label) => (
                             <CommandItem
@@ -326,12 +326,12 @@ const NewIssue = () => {
             {/* Milestone */}
             <Card className="bg-card border-border">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm text-card-foreground">Milestone</CardTitle>
+                <CardTitle className="text-sm text-card-foreground">마일스톤</CardTitle>
               </CardHeader>
               <CardContent>
                 <Select value={selectedMilestone} onValueChange={setSelectedMilestone}>
                   <SelectTrigger className="bg-input border-border text-foreground">
-                    <SelectValue placeholder="Choose a milestone" />
+                    <SelectValue placeholder="마일스톤 선택" />
                   </SelectTrigger>
                   <SelectContent className="bg-popover border-border">
                     {milestones.map(milestone => (
@@ -350,30 +350,30 @@ const NewIssue = () => {
             {/* Priority */}
             <Card className="bg-card border-border">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm text-card-foreground">Priority</CardTitle>
+                <CardTitle className="text-sm text-card-foreground">우선순위</CardTitle>
               </CardHeader>
               <CardContent>
                 <Select value={selectedPriority} onValueChange={setSelectedPriority}>
                   <SelectTrigger className="bg-input border-border text-foreground">
-                    <SelectValue placeholder="Choose priority" />
+                    <SelectValue placeholder="우선순위 선택" />
                   </SelectTrigger>
                   <SelectContent className="bg-popover border-border">
                     <SelectItem value="low" className="text-popover-foreground">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                        Low
+                        낮음
                       </div>
                     </SelectItem>
                     <SelectItem value="medium" className="text-popover-foreground">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
-                        Medium
+                        보통
                       </div>
                     </SelectItem>
                     <SelectItem value="high" className="text-popover-foreground">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                        High
+                        높음
                       </div>
                     </SelectItem>
                   </SelectContent>
@@ -384,12 +384,12 @@ const NewIssue = () => {
             {/* Projects */}
             <Card className="bg-card border-border">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm text-card-foreground">Projects</CardTitle>
+                <CardTitle className="text-sm text-card-foreground">프로젝트</CardTitle>
               </CardHeader>
               <CardContent>
                 <Select value={selectedProject} onValueChange={setSelectedProject}>
                   <SelectTrigger className="bg-input border-border text-foreground">
-                    <SelectValue placeholder="Choose a project" />
+                    <SelectValue placeholder="프로젝트 선택" />
                   </SelectTrigger>
                   <SelectContent className="bg-popover border-border">
                     {projects.map(project => (

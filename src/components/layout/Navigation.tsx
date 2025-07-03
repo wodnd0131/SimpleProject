@@ -20,34 +20,34 @@ export const Navigation = ({ className }: NavigationProps) => {
 
   const navigationItems = [
     {
-      name: 'Dashboard',
+      name: '대시보드',
       href: '/dashboard',
       icon: Home,
-      description: 'Project overview and stats'
+      description: '프로젝트 개요 및 통계'
     },
     {
-      name: 'Issues',
+      name: '이슈',
       href: '/issues',
       icon: FileText,
-      description: 'Track and manage issues'
+      description: '이슈 추적 및 관리'
     },
     {
-      name: 'Documents',
+      name: '문서',
       href: '/docs',
       icon: FileEdit,
-      description: 'Create and manage documents'
+      description: '문서 작성 및 관리'
     },
     {
-      name: 'Meetings',
+      name: '회의',
       href: '/meetings',
       icon: Calendar,
-      description: 'Meeting minutes and records'
+      description: '회의록 및 기록'
     },
     {
-      name: 'Team',
+      name: '팀',
       href: '/team',
       icon: Users,
-      description: 'Team workload and assignments'
+      description: '팀 업무량 및 배정'
     }
   ];
 
@@ -86,7 +86,7 @@ export const Navigation = ({ className }: NavigationProps) => {
       <Link to="/docs/new">
         <Button size="sm" className="h-8 bg-blue-600 hover:bg-blue-700">
           <FileEdit className="w-4 h-4 mr-1" />
-          New Docs
+          새 문서
         </Button>
       </Link>
     </nav>

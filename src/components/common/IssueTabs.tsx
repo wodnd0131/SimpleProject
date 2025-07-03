@@ -49,11 +49,11 @@ export const IssueTabs = ({
       <TabsList className="grid grid-cols-2 w-fit">
         <TabsTrigger value="open" className="flex items-center gap-2">
           <StatusBadge status="open" size="sm" showIndicator />
-          {openCount} Open
+          {openCount} 열린 이슈
         </TabsTrigger>
         <TabsTrigger value="closed" className="flex items-center gap-2">
           <StatusBadge status="closed" size="sm" showIndicator />
-          {closedCount} Closed
+          {closedCount} 닫힌 이슈
         </TabsTrigger>
       </TabsList>
       

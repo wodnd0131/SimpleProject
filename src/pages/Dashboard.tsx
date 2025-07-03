@@ -108,20 +108,20 @@ const Dashboard = () => {
   return (
     <PageLayout>
       <PageHeader
-        title="Dashboard"
-        subtitle="Overview of your project management activities"
+        title="대시보드"
+        subtitle="프로젝트 관리 활동 개요"
         actions={
           <div className="flex items-center gap-2">
             <Link to="/meetings/new">
               <Button variant="outline" size="sm">
                 <Calendar className="w-4 h-4 mr-2" />
-                New Meeting
+                새 회의
               </Button>
             </Link>
             <Link to="/docs/new">
               <Button className="bg-blue-600 hover:bg-blue-700" size="sm">
                 <FileEdit className="w-4 h-4 mr-2" />
-                New Docs
+                새 문서
               </Button>
             </Link>
           </div>
@@ -132,28 +132,28 @@ const Dashboard = () => {
         {/* Stats Overview */}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <StatCard
-            title="Total Issues"
+            title="전체 이슈"
             value={stats?.totalIssues || 0}
-            description="across all projects"
+            description="모든 프로젝트"
             icon={FileText}
             trend="+12%"
           />
           <StatCard
-            title="Open Issues"
+            title="열린 이슈"
             value={stats?.openIssues || 0}
-            description="need attention"
+            description="주의 필요"
             icon={AlertTriangle}
           />
           <StatCard
-            title="Team Members"
+            title="팀 멤버"
             value={stats?.teamMembers || 0}
-            description="active collaborators"
+            description="활성 협업자"
             icon={Users}
           />
           <StatCard
-            title="Completed This Week"
+            title="이번 주 완료"
             value={stats?.completedThisWeek || 0}
-            description="tasks finished"
+            description="완료된 작업"
             icon={TrendingUp}
             trend="+8%"
           />
@@ -163,8 +163,8 @@ const Dashboard = () => {
           {/* Project Progress */}
           <Card className="col-span-2">
             <CardHeader>
-              <CardTitle>Project Progress</CardTitle>
-              <CardDescription>Track completion status across active projects</CardDescription>
+              <CardTitle>프로젝트 진행률</CardTitle>
+              <CardDescription>활성 프로젝트의 완료 상태 추적</CardDescription>
             </CardHeader>
             <CardContent>
               {progressLoading ? (
@@ -184,7 +184,7 @@ const Dashboard = () => {
                         <div className="space-y-1">
                           <p className="text-sm font-medium leading-none">{project.projectName}</p>
                           <p className="text-xs text-muted-foreground">
-                            {project.completedIssues}/{project.totalIssues} tasks completed
+                            {project.completedIssues}/{project.totalIssues} 작업 완료
                           </p>
                         </div>
                         <Badge variant={
@@ -200,7 +200,7 @@ const Dashboard = () => {
                   ))}
                   <Link to="/projects">
                     <Button variant="outline" className="w-full mt-4">
-                      View All Projects
+                      모든 프로젝트 보기
                     </Button>
                   </Link>
                 </div>
@@ -211,8 +211,8 @@ const Dashboard = () => {
           {/* Upcoming Deadlines */}
           <Card>
             <CardHeader>
-              <CardTitle>Upcoming Deadlines</CardTitle>
-              <CardDescription>Tasks and meetings due soon</CardDescription>
+              <CardTitle>다가오는 마감일</CardTitle>
+              <CardDescription>곧 마감인 작업 및 회의</CardDescription>
             </CardHeader>
             <CardContent>
               {deadlinesLoading ? (
@@ -251,7 +251,7 @@ const Dashboard = () => {
                             variant={getStatusColor(deadline.status)}
                             className="text-xs"
                           >
-                            {deadline.daysRemaining < 0 ? 'overdue' : `${deadline.daysRemaining}d left`}
+                            {deadline.daysRemaining < 0 ? '연체' : `${deadline.daysRemaining}일 남음`}
                           </Badge>
                         </div>
                       </div>
@@ -259,7 +259,7 @@ const Dashboard = () => {
                   ))}
                   <Link to="/team/deadlines">
                     <Button variant="outline" className="w-full mt-4">
-                      View All Deadlines
+                      모든 마감일 보기
                     </Button>
                   </Link>
                 </div>
@@ -272,8 +272,8 @@ const Dashboard = () => {
           {/* Recent Activity */}
           <Card>
             <CardHeader>
-              <CardTitle>Recent Activity</CardTitle>
-              <CardDescription>Latest updates across your projects</CardDescription>
+              <CardTitle>최근 활동</CardTitle>
+              <CardDescription>프로젝트의 최신 업데이트</CardDescription>
             </CardHeader>
             <CardContent>
               {activityLoading ? (
@@ -323,45 +323,45 @@ const Dashboard = () => {
           {/* Quick Actions */}
           <Card>
             <CardHeader>
-              <CardTitle>Quick Actions</CardTitle>
-              <CardDescription>Common tasks and shortcuts</CardDescription>
+              <CardTitle>빠른 작업</CardTitle>
+              <CardDescription>일반적인 작업 및 바로가기</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid gap-3">
                 <Link to="/docs/new">
                   <Button variant="outline" className="w-full justify-start">
                     <FileEdit className="w-4 h-4 mr-2" />
-                    Create New Document
+                    새 문서 만들기
                   </Button>
                 </Link>
                 <Link to="/issues/new">
                   <Button variant="outline" className="w-full justify-start">
                     <Plus className="w-4 h-4 mr-2" />
-                    Create New Issue
+                    새 이슈 만들기
                   </Button>
                 </Link>
                 <Link to="/meetings/new">
                   <Button variant="outline" className="w-full justify-start">
                     <Calendar className="w-4 h-4 mr-2" />
-                    Schedule Meeting
+                    회의 일정 잡기
                   </Button>
                 </Link>
                 <Link to="/team/workload">
                   <Button variant="outline" className="w-full justify-start">
                     <Users className="w-4 h-4 mr-2" />
-                    View Team Workload
+                    팀 업무량 보기
                   </Button>
                 </Link>
                 <Link to="/team/reminders">
                   <Button variant="outline" className="w-full justify-start">
                     <Clock className="w-4 h-4 mr-2" />
-                    Manage Reminders
+                    알림 관리
                   </Button>
                 </Link>
                 <Link to="/meetings">
                   <Button variant="outline" className="w-full justify-start">
                     <MessageSquare className="w-4 h-4 mr-2" />
-                    Meeting Minutes
+                    회의록
                   </Button>
                 </Link>
               </div>

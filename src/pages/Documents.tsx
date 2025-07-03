@@ -45,13 +45,13 @@ const Documents = () => {
   return (
     <PageLayout>
       <PageHeader 
-        title="Documents" 
-        subtitle="Create and manage project documentation with AI-powered insights"
+        title="문서" 
+        subtitle="AI 기반 인사이트로 프로젝트 문서 작성 및 관리"
         actions={
           <Link to="/docs/new">
             <Button className="bg-blue-600 hover:bg-blue-700">
               <FileEdit className="w-4 h-4 mr-2" />
-              New Document
+              새 문서
             </Button>
           </Link>
         }
@@ -71,7 +71,7 @@ const Documents = () => {
                     {doc.aiAnalysis?.processed && (
                       <Badge variant="outline" className="text-xs">
                         <Sparkles className="w-3 h-3 mr-1" />
-                        AI Analyzed
+                        AI 분석 완료
                       </Badge>
                     )}
                   </div>
@@ -105,13 +105,13 @@ const Documents = () => {
                     <p className="text-xs text-blue-700 mb-2">{doc.aiAnalysis.summary}</p>
                     <div className="flex flex-wrap gap-3 text-xs">
                       <span className="text-blue-600">
-                        <strong>{doc.aiAnalysis.extractedActionItems}</strong> action items
+                        <strong>{doc.aiAnalysis.extractedActionItems}</strong>개 액션 아이템
                       </span>
                       <span className="text-green-600">
-                        <strong>{doc.aiAnalysis.generatedIssues}</strong> issues created
+                        <strong>{doc.aiAnalysis.generatedIssues}</strong>개 이슈 생성
                       </span>
                       <span className="text-orange-600">
-                        <strong>{doc.aiAnalysis.generatedReminders}</strong> reminders set
+                        <strong>{doc.aiAnalysis.generatedReminders}</strong>개 알림 설정
                       </span>
                     </div>
                   </div>
@@ -136,7 +136,7 @@ const Documents = () => {
                       alt={doc.createdBy.username} 
                       size="xs"
                     />
-                    <span>Created by {doc.createdBy.username}</span>
+                    <span>{doc.createdBy.username} 작성</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4" />
@@ -147,7 +147,7 @@ const Documents = () => {
                 {/* Generated Issues Link */}
                 {doc.generatedIssues && doc.generatedIssues.length > 0 && (
                   <div className="flex items-center gap-2 text-sm">
-                    <span className="text-muted-foreground">Generated issues:</span>
+                    <span className="text-muted-foreground">생성된 이슈:</span>
                     <div className="flex gap-1">
                       {doc.generatedIssues.map((issueId) => (
                         <Link 
@@ -171,14 +171,14 @@ const Documents = () => {
         <Card className="bg-card border-border">
           <CardContent className="text-center py-12">
             <FileEdit className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
-            <h3 className="text-lg font-medium text-card-foreground mb-2">No documents yet</h3>
+            <h3 className="text-lg font-medium text-card-foreground mb-2">아직 문서가 없습니다</h3>
             <p className="text-muted-foreground mb-4">
-              Create your first document to get started with AI-powered project management.
+              AI 기반 프로젝트 관리를 시작하려면 첫 번째 문서를 만들어보세요.
             </p>
             <Link to="/docs/new">
               <Button className="bg-blue-600 hover:bg-blue-700">
                 <FileEdit className="w-4 h-4 mr-2" />
-                Create Document
+                문서 만들기
               </Button>
             </Link>
           </CardContent>
