@@ -12,11 +12,11 @@
 
 # 서비스 배포 페이지
 
-기본 통합 환경 프로토타입
-https://wodnd0131.github.io/SimpleProject
-
-채팅 자동화 관련 프로토타입
+서비스 프로토타입
 https://wodnd0131.github.io/ToyDocs
+
+통합 환경 디자인 프로토타입
+https://wodnd0131.github.io/SimpleProject
 
 # 프로젝트 매니징 서비스 유저 시나리오
 
